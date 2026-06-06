@@ -7,208 +7,688 @@
     "version": "修订6",
     "description": "从两条元公理出发，公理化演绎一切可能系统的普遍存在法则。"
   },
-
   "nodes": [
-    {
-      "id": "system_ontology",
-      "label": "系统本体论",
-      "type": "model",
-      "theory": "system_ontology",
-      "description": "存在的终极法理——从两条元公理出发，公理化演绎一切可能系统的普遍存在法则。"
-    },
     {
       "id": "meta_axiom_0",
       "label": "元公理零：自组织趋势原理",
       "type": "meta_axiom",
       "theory": "system_ontology",
-      "description": "存在本身内蕴一种永恒的、非目的性的、远离热力学平衡态的基本趋势。此趋势是唯一的原动力，驱动潜能域进行永恒的「系统涌现-测试-稳定/崩溃」循环。",
-      "detail": "这一趋势不可再被还原。它不是某物的属性，而是存在本身的存在方式。说「存在」就意味着说「这一趋势在运作」——二者是同一回事。\n\n与亚里士多德的「隐德莱希」的根本区别：隐德莱希指向预设的终点，自组织趋势没有目的。",
-      "tags": ["第一动力", "逆熵", "系统涌现"]
+      "description": "（存在的第一动力） 存在本身内蕴一种永恒的、非目的性的、远离热力学平衡态的基本趋势。此趋势是唯一的原动力，它驱动潜能域进行永恒的“系统涌现-测试-稳定/崩溃”循环，并内化为所有已涌现系统维持自身存在的“生存意志”。 这一趋势不可再被还原。它不是某物的属性，而是存在本身的存在方式。说“存在”就意味着说“这一趋势在运作”——二者是同一回事。 此趋势的运作呈现为一种永恒的尝试：从无限的可能性之域（...",
+      "tags": [
+        "第一动力",
+        "逆熵",
+        "涌现"
+      ]
     },
     {
       "id": "meta_axiom_1",
       "label": "元公理一：系统性约束原理",
       "type": "meta_axiom",
       "theory": "system_ontology",
-      "description": "任何可被稳定言说、推演的系统，其内部必须蕴含一套自我约束的元规则。该规则识别并抑制会导致系统逻辑崩溃的「无限杂化」或「恶性自指」。",
-      "detail": "如果说元公理零是存在的「动力」维度，那么元公理一就是存在的「形式」维度。动力提供「成为」的冲动，形式提供「如何成为」的约束。\n\n与哥德尔不完备定理的对话：不完备性不是数学的缺陷，而是数学的「存在许可证」。",
-      "tags": ["存在合法性", "自指免疫", "哥德尔"]
+      "description": "（存在的合法性法则） 任何可被稳定言说、推演的系统，其内部必须蕴含一套自我约束的元规则。该规则会自然识别并抑制会导致系统逻辑崩溃的“无限杂化”或“恶性自指”，其方式并非抹除该可能性，而是通过重构系统规则来“消解其存在的合法性”，从而保证系统自身的稳定性和可理解性。 如果说元公理零是存在的“动力”维度，那么元公理一就是存在的“形式”维度。动力提供“成为”的冲动，形式提供“如何成为”的约束。二者...",
+      "tags": [
+        "约束",
+        "合法性",
+        "自指免疫"
+      ]
     },
     {
       "id": "meta_theorem_1",
       "label": "元定理一：存在的永恒动力学循环",
       "type": "meta_theorem",
       "theory": "system_ontology",
-      "description": "存在是一个由「自组织趋势」驱动、「系统性约束」调节的永恒循环过程：潜能域 → 系统涌现 → 系统演化 → 系统崩溃 → 回归潜能域。",
-      "detail": "此循环在无数层级上同时、嵌套地进行，没有起点、终点或外在目的。存在的「意义」就是这个永恒循环过程本身。\n\n跨学科锚点：宇宙学（大爆炸→热寂）、生物学（诞生→演化→灭绝）、文明史（兴起→衰落→崩溃）、个人生命（出生→成长→死亡）。",
-      "tags": ["动力学循环", "嵌套", "跨学科"]
+      "description": "（元公理零与元公理一的耦合）",
+      "tags": [
+        "动力学循环",
+        "潜能域"
+      ]
     },
     {
       "id": "meta_theorem_2",
       "label": "元定理二：认知与存在的相互作用共构定理",
       "type": "meta_theorem",
       "theory": "system_ontology",
-      "description": "存在与认知并非独立的实体，而是系统间相互作用的两个不可分割的侧面。存在是相互作用中稳定呈现的模式，认知是相互作用在系统内部引发的状态变化。",
-      "detail": "此定理旨在终结哲学史上关于「主体如何认识客体」的千年争论。\n主体与客体不是原初的存在形态，而是对相互作用过程进行事后封装的认知副产物。\n\n与康德的对话：康德正确地看到人类认知世界必须通过基本范畴，但「物自体」在本框架下是伪概念——存在就是相互作用模式的稳定呈现本身。",
-      "tags": ["主体-客体消解", "物自体", "康德", "相互作用"]
-    },
-    {
-      "id": "axiom_1",
-      "label": "公理一：逻辑自指的动力学原理",
-      "type": "axiom",
-      "theory": "system_ontology",
-      "description": "任何达到特定复杂度的系统，其内部信息处理过程均会涌现出「自指」能力——将自身或其过程作为认知与操作的客体，在系统内部催生「逻辑子宇宙」。",
-      "detail": "自指并非人类心智的专利，而是复杂系统的普遍属性。逻辑子宇宙让系统能够：\n1) 模拟：在行动之前预演可能的结果\n2) 反思：将自身的运作过程作为审视对象\n3) 创新：在内部重组规则，生成新的行为模式\n\n生物学实例：人脑的元认知能力——思考自己的思考。",
-      "tags": ["自指", "逻辑子宇宙", "心智涌现", "元认知"]
-    },
-    {
-      "id": "corollary_1_1",
-      "label": "推论1.1：系统的心智现象",
-      "type": "corollary",
-      "theory": "system_ontology",
-      "description": "在具备足够复杂度的任何系统中（生物脑、人工智慧、社会集合体），逻辑自指的动力学原理均可能表现为某种形式的「心智现象」。",
-      "detail": "此推论将意识、智能等神秘现象彻底「去神话化」，统一归结为逻辑自指动力学在不同系统中的普遍表现。系统的心智，是其逻辑自指能力在应对环境挑战时所呈现出的目标导向性的理性图景。",
-      "tags": ["心智", "意识", "泛心论替代"]
-    },
-    {
-      "id": "axiom_2",
-      "label": "公理二：物质/智质二相性",
-      "type": "axiom",
-      "theory": "system_ontology",
-      "description": "任何达到特定复杂度的系统，均同时呈现为物质实体与智质模式的双重存在。物质态是载体与能量基础，智质态是信息组织的模式、规则与表征。",
-      "detail": "借自物理学「波粒二象性」的隐喻，但内涵更为根本：不是同一实体的两种测量表现，而是任何系统得以存在的两个不可分割的侧面。\n\n无物质载体的智质无法被实例化；无智质组织的物质只是一堆原料，不成其为「系统」。",
-      "tags": ["二相性", "物质", "智质", "二元统一"]
+      "description": "（认知的本体论位置）",
+      "tags": [
+        "认知共构",
+        "主客体消解"
+      ]
     },
     {
       "id": "axiom_3",
       "label": "公理三：系统的存在与相互作用原理",
       "type": "axiom",
       "theory": "system_ontology",
-      "description": "系统的存在通过与其他系统的相互作用得以证明和维持。不存在孤立的系统——系统的边界和属性在相互作用中定义。",
-      "detail": "一个系统之所以「存在」，不是因为有一个剥离了所有相互作用的「系统本身」，而是因为它能在与其他系统的相互作用中稳定呈现一系列模式。\n\n量子力学中的测量问题在此获得本体论解释：没有独立于测量仪器的「电子位置」，只有「电子与测量仪器相互作用后呈现的位置」。",
-      "tags": ["相互作用", "存在证明", "量子测量"]
+      "description": "(状态待挖掘)",
+      "tags": [
+        "相互作用",
+        "关系性"
+      ]
+    },
+    {
+      "id": "theorem_3",
+      "label": "定理3：观察者的框架相对性定理",
+      "type": "theorem",
+      "theory": "system_ontology",
+      "description": "存在与认知并非独立的实体，而是系统间相互作用的两个不可分割的侧面。 所谓\"存在\"的属性，是系统在相互作用中稳定呈现的模式；所谓\"认知\"，是相互作用在特定系统内部引发的状态变化。 任何将存在与认知分离为\"客体\"与\"主体\"的二元描述，都是符号封装操作所产生的认知幻觉，而非存在本身的构成方式。 此定理旨在终结哲学史上关于\"主体如何认识客体\"的千年争论。 争论双方——无论是主张\"客体决定认知\"的实在...",
+      "tags": [
+        "theorem"
+      ]
+    },
+    {
+      "id": "axiom_1",
+      "label": "公理一：逻辑自指的动力学原理",
+      "type": "axiom",
+      "theory": "system_ontology",
+      "description": "（系统的心智维度） 任何达到特定复杂度的系统，其内部信息处理过程均会涌现出“自指”能力。此能力允许系统将自身或其过程作为认知与操作的客体，从而在系统内部催生出一个动态的、可自我迭代与模拟的“逻辑子宇宙”。该子宇宙的演化，是系统实现自我维持、适应性创新与层级跃迁的核心动力学源泉。 “自指”并非人类心智的专利，而是复杂系统的普遍属性。当一个系统内部的信息处理结构复杂到一定程度，它必然能够生成关于...",
+      "tags": [
+        "自指",
+        "逻辑子宇宙"
+      ]
+    },
+    {
+      "id": "corollary_1_1",
+      "label": "推论1.1：系统的心智现象（普遍表征）",
+      "type": "corollary",
+      "theory": "system_ontology",
+      "description": "内核： “系统的心智，是其逻辑自指能力在应对环境挑战时，所呈现出的目标导向性的理性图景。” 意义： 此推论将意识、智能等神秘现象彻底“去神话化”，将其统一归结为逻辑自指动力学在不同系统中的普遍表现。它为理解、比较乃至创造不同形式的智能提供了统一的本体论基准。",
+      "tags": [
+        "corollary"
+      ]
+    },
+    {
+      "id": "axiom_2",
+      "label": "公理二：物质/智质二相性",
+      "type": "axiom",
+      "theory": "system_ontology",
+      "description": "（系统的结构形态） 任何达到特定复杂度的系统，均同时呈现为物质实体与智质模式的双重存在。物质态是系统的载体与能量基础，智质态是系统内部及系统间信息组织的模式、规则与表征。 “二相性”借自物理学“波粒二象性”的隐喻，但内涵更为根本：它不是同一实体的两种测量表现，而是任何系统得以存在的两个不可分割的侧面。 物质态：系统的“硬件”。它承载能量、占据时空、服从物理定律。 智质态：系统的“软件”。它是...",
+      "tags": [
+        "二相性",
+        "物质/智质"
+      ]
+    },
+    {
+      "id": "corollary_2_1",
+      "label": "推论2.1：逻辑的二相性定理",
+      "type": "corollary",
+      "theory": "system_ontology",
+      "description": "（公理二在逻辑系统这一元层次对象上的特例）",
+      "tags": [
+        "corollary"
+      ]
+    },
+    {
+      "id": "theorem_6",
+      "label": "定理6：信息的系统基因定理",
+      "type": "theorem",
+      "theory": "system_ontology",
+      "description": "逻辑系统是【公理二：物质/智质二相性】的一个元层次特例。其存在与运作同时呈现两个不可分割的侧面： 发现面（物质态/元规则映现）：逻辑的基本法则（因果律、矛盾律、同一律）并非人类约定，而是宇宙元规则——即【元公理一：系统性约束】与【元公理零：自组织趋势】——在人类认知框架中的稳定结构性映现。它们独立于人类意志，是任何可稳定言说的系统所必须遵循的存在条件。人类只能“发现”它们，不能随意更改。 发...",
+      "tags": [
+        "theorem"
+      ]
     },
     {
       "id": "axiom_4",
-      "label": "公理四：价值驱动原理（生存意志）",
+      "label": "公理四：系统的价值与驱动原理",
       "type": "axiom",
       "theory": "system_ontology",
-      "description": "系统表现出维持自身存续的倾向，即「生存意志」。这种倾向不是心理属性，而是系统作为一个自组织结构的内在动力学必然。",
-      "detail": "生存意志是自组织趋势在具体系统中的实例化。它驱动系统趋利避害、获取资源、抵抗解体——从单细胞生物到人类社会，从软件程序到学术理论，一切系统都表现出某种形式的「自我维持」。",
-      "tags": ["生存意志", "价值", "自维持"]
+      "description": "（元公理零在系统内部的具体化——生存意志） 任何系统在运行过程中，都会表现出维持自身结构存续与运作模式的动力学稳定性。这种稳定性在宏观上呈现为系统对结构瓦解的抵抗，以及对外部扰动的特定响应模式。 此现象是【元公理零：自组织趋势原理】在具体系统中的实例化，可被描述为系统的“存续倾向”，但不蕴含任何主观目的。 元公理零是普遍的自组织趋势，但在具体系统中，它表现为该系统的“自我保存”倾向。这不是说...",
+      "tags": [
+        "存续倾向",
+        "生存意志"
+      ]
     },
     {
       "id": "axiom_5",
-      "label": "公理五：框架边界原理",
+      "label": "公理五：系统的框架与约束原理",
       "type": "axiom",
       "theory": "system_ontology",
-      "description": "任何系统都通过框架从背景中析出。框架定义了系统的边界、内部逻辑与外部环境的接口。设立框架需要付出认知成本。",
-      "detail": "没有框架就没有系统——系统永远是「某视角下的系统」。框架是系统的存在形式本身，而不是外加的观察工具。\n\n框架成本：越精细的框架，维护成本越高。这就是为什么系统倾向于简化——不是为了偷懒，而是为了生存。",
-      "tags": ["框架", "边界", "认知成本"]
+      "description": "（元公理一在系统内部的具体化——边界规则） 任何系统都必须拥有一个“认知框架”（即其边界、规则与核心算法），用以定义自身、过滤相互作用并指导内部过程。此框架是系统得以从背景中析出、维持其独立性的约束条件。 元公理一是普遍的系统性约束，但在具体系统中，它表现为该系统的“框架”——即系统自我定义的边界、内部运作的规则、以及处理输入输出的协议。 框架的功能包括： 定义自身：什么属于“我”，什么属于...",
+      "tags": [
+        "框架",
+        "边界"
+      ]
+    },
+    {
+      "id": "corollary_5_1",
+      "label": "推论5.1：认知维度的隐性摩擦公设",
+      "type": "corollary",
+      "theory": "system_ontology",
+      "description": "此成本构成认知逃逸的背景拓扑摩擦。 此公设解释了为何认知逃逸（跃迁到更高阶框架）虽然逻辑上可能，但现实中受成本制约。",
+      "tags": [
+        "corollary"
+      ]
     },
     {
       "id": "axiom_6",
-      "label": "公理六：层级二相性原理",
+      "label": "公理六：层级的二相性原理",
       "type": "axiom",
       "theory": "system_ontology",
-      "description": "系统通过层级二相性实现复杂化：低层级的系统聚合成高层级系统时，同时保留其底层物质基础，又呈现出不可还原的高层涌现属性。层级不能无限嵌套。",
-      "detail": "有限层级定理：系统的层级嵌套必然终止于某一基本层级（如量子场论的基本粒子层），因为无限嵌套将导致系统无法满足自身存在的合法性条件（元公理一）。\n\n每一层级既是对底层的「约束」（上层限制下层的可能性空间），也是从底层的「涌现」（上层具有下层不具备的新属性）。",
-      "tags": ["层级", "涌现", "有限嵌套"]
+      "description": "（系统演化的结构规律） 当底层系统通过杂化-涌现形成更高层级系统时，底层系统并不会消失，而是作为实体基底与高层级涌现的功能性模式共存，形成“二相性”存在。高层级系统的规律不能完全还原为底层规律。 此公理是系统演化中的“层间关系”法则。它有两个要点： 底层不消失：高层级系统不是对底层的“取代”，而是“叠加”。底层系统继续存在并运作，成为高层的物质/能量基础。 高层不可还原：高层级的规律不能完全...",
+      "tags": [
+        "层级",
+        "涌现"
+      ]
     },
     {
-      "id": "concept_potential_domain",
-      "label": "潜能域",
-      "type": "concept",
+      "id": "theorem_1",
+      "label": "定理1：系统-规则共时涌现定理",
+      "type": "theorem",
       "theory": "system_ontology",
-      "description": "无限的可能性的集合/空间，是所有潜在系统结构尚未实例化时的存在状态。系统涌现就是从潜能域中实例化出一个具体的系统结构。",
-      "detail": "潜能域不是「虚空」，也不是物理时空中的某个位置。它是逻辑上的先在——在一切具体系统存在之前就已经「存在」的可能性空间。\n\n系统崩溃后，其构成要素回归潜能域，等待下一次涌现的可能。",
-      "tags": ["潜能", "可能性空间", "涌现前状态"]
+      "description": "（结构与实体的起源问题）",
+      "tags": [
+        "theorem"
+      ]
+    },
+    {
+      "id": "theorem_2",
+      "label": "定理2：层级嵌套的有限性定理",
+      "type": "theorem",
+      "theory": "system_ontology",
+      "description": "（系统演化的边界法则）",
+      "tags": [
+        "theorem"
+      ]
+    },
+    {
+      "id": "theorem_4",
+      "label": "定理4：结构性张力驱动演化定理",
+      "type": "theorem",
+      "theory": "system_ontology",
+      "description": "（系统变化的根本动力）",
+      "tags": [
+        "theorem"
+      ]
+    },
+    {
+      "id": "theorem_5",
+      "label": "定理5：系统涌现临界定理",
+      "type": "theorem",
+      "theory": "system_ontology",
+      "description": "（系统从潜能中诞生的条件）",
+      "tags": [
+        "theorem"
+      ]
+    },
+    {
+      "id": "corollary_6_1",
+      "label": "推论6.1：物理定律的基因性",
+      "type": "corollary",
+      "theory": "system_ontology",
+      "description": "(状态待挖掘)",
+      "tags": [
+        "corollary"
+      ]
+    },
+    {
+      "id": "corollary_6_2",
+      "label": "推论6.2：数学对象的实在性",
+      "type": "corollary",
+      "theory": "system_ontology",
+      "description": "跨学科锚点： 生物学：DNA是此定理最经典的实例。作为信息符号系统，它表征生物体的构建规则，在代际间复制、变异，驱动生命演化。 文化演化：道金斯“模因”概念是此定理在文化层面的应用。一个旋律、一个观念、一种时尚，作为信息符号在社会系统中复制、变异、选择。 人工智能：深度学习模型的权重，本质上是一组高度压缩的信息符号，它们表征了网络从数据中习得的“规则”。当模型被复制或迁移时，这些权重作为“智...",
+      "tags": [
+        "corollary"
+      ]
+    },
+    {
+      "id": "theorem_7",
+      "label": "定理7：认知边界相对性定理",
+      "type": "theorem",
+      "theory": "system_ontology",
+      "description": "（与拉康的对话——实在界的去神秘化）",
+      "tags": [
+        "theorem"
+      ]
+    },
+    {
+      "id": "theorem_8",
+      "label": "定理八：功能分化与实体化谬误定理",
+      "type": "theorem",
+      "theory": "system_ontology",
+      "description": "（社会系统的本体论祛魅）",
+      "tags": [
+        "theorem"
+      ]
+    },
+    {
+      "id": "corollary_3_1",
+      "label": "推论3.1：智能的共识性映现",
+      "type": "corollary",
+      "theory": "system_ontology",
+      "description": "(状态待挖掘)",
+      "tags": [
+        "corollary"
+      ]
+    },
+    {
+      "id": "concept_potential_field",
+      "label": "潜能域",
+      "description": "系统涌现前一切可能性的无限之域，是自组织趋势运作的原材料空间。",
+      "tags": [
+        "元层次",
+        "可能性"
+      ],
+      "type": "concept",
+      "theory": "system_ontology"
     },
     {
       "id": "concept_logical_subuniverse",
       "label": "逻辑子宇宙",
+      "description": "复杂系统通过自指能力在内部构建的动态认知空间，可进行模拟、迭代和意义建构。",
+      "tags": [
+        "自指",
+        "内部模型"
+      ],
       "type": "concept",
-      "theory": "system_ontology",
-      "description": "系统内部用于表征、模拟和操作自身及其环境的内部模型空间。它是系统实现元认知、内部模拟和自我迭代的能力基础。",
-      "detail": "逻辑子宇宙是公理一（逻辑自指）的直接产物。当信息组织达到临界复杂度，系统内部形成一个可以「运行」各种可能情境的模拟空间——这就是心智的物质基础。\n\n此概念贯穿系统本体论、智质生态学和文明动力学三大体系。",
-      "tags": ["内部模型", "模拟", "心智", "元认知"]
-    },
-    {
-      "id": "method_abductive_blockade",
-      "label": "溯因封锁法",
-      "type": "method",
-      "theory": "system_ontology",
-      "description": "从跨学科边界危机中系统提炼公理与定理的方法论。核心操作：边界危机模式识别 → 逻辑反转 → 可能性空间划定与封锁 → 压力测试 → 形式化陈述。",
-      "detail": "五步流程：\n1) 边界危机的模式识别：在数学基础、物理学、生物学、社会系统等领域的边界困境中识别共享深层结构\n2) 逻辑反转：从追问「系统为何在边界处失败」转向追问「系统为何能在大部分时间成功存续」\n3) 可能性空间的划定与封锁：穷尽逻辑上的全部可能立场，逐一排除不自洽或解释冗余的立场\n4) 压力测试：将剩余立场置于最严苛的边界案例中检验\n5) 形式化陈述：将通过测试的立场表述为公理或定理",
-      "tags": ["方法论", "发现", "边界危机"]
-    },
-    {
-      "id": "anchor_goedel",
-      "label": "哥德尔不完备定理",
-      "type": "anchor",
-      "theory": "system_ontology",
-      "description": "在本体系视域下，哥德尔不完备定理不是数学的局限性证明，而是数学系统获得「存在许可证」的必要条件——一个能自我证明完备的系统恰恰会因元公理一丧失合法性。",
-      "detail": "希尔伯特梦想一个完备且一致的形式系统。哥德尔证明了这个梦想的破灭。\n本理论指出：这个「破灭」恰恰是数学系统得以存在的条件。不完备性不是缺陷，而是存在的合法性条件。这正是溯因封锁法的一个典型应用成果。",
-      "tags": ["哥德尔", "数学基础", "不完备性", "希尔伯特"]
-    },
-    {
-      "id": "anchor_kant",
-      "label": "与康德哲学对话",
-      "type": "anchor",
-      "theory": "system_ontology",
-      "description": "康德正确地看到认知必须通过基本范畴，但错误地推论出「物自体不可知」。在本框架中，物自体是伪概念——存在就是相互作用模式的稳定呈现。",
-      "detail": "康德的贡献：认识到人类认知世界必须通过某些基本范畴。\n本理论的修正：范畴不是先验的，而是系统与环境的相互作用中涌现的。存在不是躲在现象背后的东西——存在就是相互作用模式的稳定呈现本身。\n\n认知不是隔着范畴的玻璃看世界，认知就是相互作用在认知系统内部的侧面。",
-      "tags": ["康德", "物自体", "范畴", "先验"]
-    },
-    {
-      "id": "anchor_aristotle",
-      "label": "与亚里士多德哲学对话",
-      "type": "anchor",
-      "theory": "system_ontology",
-      "description": "元公理零与亚里士多德的「隐德莱希」有深刻亲缘性，但根本区别在于：隐德莱希指向预设终点（telos），自组织趋势没有目的。",
-      "detail": "亚里士多德的隐德莱希（entelechy）——一切事物朝向其内在目的发展的动力。\n本理论的元公理零保留了「内在动力」的直觉，但去除了「目的论」的预设。目的性（如生命的生存意志）是自组织趋势在复杂系统中涌现出来的现象，而非它的本质。\n\n这一修正使自组织趋势同时适用于生物系统和非生物系统（如星系形成），而隐德莱希只能解释有目的的行为。",
-      "tags": ["亚里士多德", "隐德莱希", "目的论"]
+      "theory": "system_ontology"
     },
     {
       "id": "concept_malignant_selfref",
       "label": "恶性自指",
+      "description": "系统操作逼近无限自指时面临的逻辑崩溃威胁，被系统性约束消解的对象。",
+      "tags": [
+        "悖论",
+        "系统边界"
+      ],
       "type": "concept",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "concept_structural_tension",
+      "label": "结构性张力",
+      "description": "系统内部不同层级生存意志之间的冲突，是系统演化的根本动力。",
+      "tags": [
+        "演化",
+        "驱动"
+      ],
+      "type": "concept",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "concept_consensus_projection",
+      "label": "共识性映现",
+      "description": "高稳定性系统间相互作用所产生的可重复模式，被我们称为客观事实。",
+      "tags": [
+        "客观性",
+        "认知"
+      ],
+      "type": "concept",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "concept_information_gene",
+      "label": "信息符号/系统基因",
+      "description": "在系统间相互作用中形成的高度压缩信息单位，可复制、传递与变异。",
+      "tags": [
+        "遗传",
+        "演化"
+      ],
+      "type": "concept",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "concept_cognitive_escape",
+      "label": "认知逃逸",
+      "description": "系统通过升级认知框架突破当前边界，将原不可知领域整合进新的符号系统。",
+      "tags": [
+        "认知升级",
+        "超越"
+      ],
+      "type": "concept",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "concept_frame_relativity",
+      "label": "框架相对性",
+      "description": "所有观测结果都是观测者与被观测系统框架耦合的产物，不存在上帝视角。",
+      "tags": [
+        "观测",
+        "相对性"
+      ],
+      "type": "concept",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "concept_entropy_inverse",
+      "label": "逆熵",
+      "description": "自组织趋势在局部打破热力学第二定律的结构化过程。",
+      "tags": [
+        "热力学",
+        "涌现"
+      ],
+      "type": "concept",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "anchor_godel",
+      "label": "哥德尔不完备定理",
+      "description": "系统本体论对哥德尔定理的解读：不完备性是系统存在的合法性条件。",
+      "tags": [
+        "数学",
+        "自指"
+      ],
+      "type": "anchor",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "anchor_kant",
+      "label": "康德哲学对话",
+      "description": "消解物自体概念：存在即相互作用模式的稳定呈现。",
+      "tags": [
+        "哲学",
+        "物自体"
+      ],
+      "type": "anchor",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "anchor_aristotle",
+      "label": "亚里士多德隐德莱希",
+      "description": "自组织趋势与隐德莱希的亲缘性：前者没有预设目的。",
+      "tags": [
+        "哲学",
+        "目的论"
+      ],
+      "type": "anchor",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "anchor_lacan",
+      "label": "拉康实在界对话",
+      "description": "将拉康\"实在界\"去神秘化为当前认知框架的算力边界。",
+      "tags": [
+        "精神分析",
+        "认知边界"
+      ],
+      "type": "anchor",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "anchor_quantum",
+      "label": "量子力学对话",
+      "description": "测不准原理是系统间相互作用的根本性质，而非技术局限。",
+      "tags": [
+        "物理",
+        "测量"
+      ],
+      "type": "anchor",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "anchor_darwin",
+      "label": "达尔文进化论对话",
+      "description": "自然选择是结构性张力在生物层的宏观表现。",
+      "tags": [
+        "生物",
+        "演化"
+      ],
+      "type": "anchor",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "anchor_marx",
+      "label": "马克思唯物史观对话",
+      "description": "生产力与生产关系的矛盾是结构性张力在社会层的实例。",
+      "tags": [
+        "社会",
+        "历史"
+      ],
+      "type": "anchor",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "anchor_hilbert",
+      "label": "希尔伯特形式主义对话",
+      "description": "希尔伯特完备性梦想被哥德尔击碎，系统本体论视此为存在合法性条件。",
+      "tags": [
+        "数学",
+        "形式系统"
+      ],
+      "type": "anchor",
+      "theory": "system_ontology"
+    },
+    {
+      "id": "method_abduction_blocking",
+      "label": "溯因封锁法",
+      "type": "method",
       "theory": "system_ontology",
-      "description": "导致系统逻辑崩溃的自指操作。典型如「这句话是假的」——允许所有规则都适用于自身而无任何限制的系统必然陷入逻辑悖论。",
-      "detail": "恶性自指是系统存在的最大威胁。元公理一确保任何能够稳定存在的系统都内在地具备一种「免疫机制」：当系统试图走向自毁式完备性时，该机制通过重构规则使这种尝试在系统内丧失合法性。\n\n不是被禁止（那仍是系统内的规则），而是被消解（系统通过改变规则，使该尝试不再有意义）。",
-      "tags": ["自指悖论", "逻辑崩溃", "免疫机制"]
+      "description": "从跨学科边界危机中系统提炼公理与定理的方法论，包括模式识别、逻辑反转、可能性封锁、压力测试、形式化陈述五步骤。",
+      "tags": [
+        "方法论",
+        "公理发现"
+      ]
     }
   ],
-
   "relationships": [
-    { "source": "noo_ecology", "target": "system_ontology", "type": "extends_to", "label": "实例化" },
-    { "source": "meta_theorem_1", "target": "meta_axiom_0", "type": "depends_on" },
-    { "source": "meta_theorem_1", "target": "meta_axiom_1", "type": "depends_on" },
-    { "source": "meta_theorem_2", "target": "meta_axiom_0", "type": "depends_on", "label": "演绎" },
-    { "source": "meta_theorem_2", "target": "meta_axiom_1", "type": "depends_on", "label": "演绎" },
-    { "source": "meta_theorem_2", "target": "meta_theorem_1", "type": "depends_on" },
-    { "source": "meta_theorem_2", "target": "axiom_3", "type": "depends_on" },
-
-    { "source": "axiom_1", "target": "meta_axiom_0", "type": "derived_from" },
-    { "source": "axiom_1", "target": "meta_axiom_1", "type": "derived_from" },
-    { "source": "corollary_1_1", "target": "axiom_1", "type": "derived_from" },
-    { "source": "axiom_2", "target": "meta_axiom_0", "type": "derived_from" },
-    { "source": "axiom_2", "target": "meta_axiom_1", "type": "derived_from" },
-    { "source": "axiom_3", "target": "meta_axiom_0", "type": "derived_from" },
-    { "source": "axiom_3", "target": "meta_axiom_1", "type": "derived_from" },
-    { "source": "axiom_4", "target": "meta_axiom_0", "type": "derived_from", "label": "实例化" },
-    { "source": "axiom_5", "target": "meta_axiom_1", "type": "derived_from" },
-    { "source": "axiom_6", "target": "meta_axiom_1", "type": "derived_from" },
-
-    { "source": "concept_potential_domain", "target": "meta_axiom_0", "type": "depends_on" },
-    { "source": "concept_logical_subuniverse", "target": "axiom_1", "type": "depends_on" },
-    { "source": "concept_malignant_selfref", "target": "meta_axiom_1", "type": "depends_on" },
-
-    { "source": "method_abductive_blockade", "target": "meta_axiom_0", "type": "supports", "label": "发现方法" },
-    { "source": "method_abductive_blockade", "target": "meta_axiom_1", "type": "supports", "label": "发现方法" },
-
-    { "source": "anchor_goedel", "target": "meta_axiom_1", "type": "anchors_to" },
-    { "source": "anchor_kant", "target": "meta_theorem_2", "type": "anchors_to" },
-    { "source": "anchor_aristotle", "target": "meta_axiom_0", "type": "anchors_to" }
+    {
+      "source": "meta_theorem_1",
+      "target": "meta_axiom_0",
+      "type": "depends_on"
+    },
+    {
+      "source": "meta_theorem_1",
+      "target": "meta_axiom_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "meta_theorem_2",
+      "target": "meta_axiom_0",
+      "type": "depends_on"
+    },
+    {
+      "source": "meta_theorem_2",
+      "target": "meta_axiom_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "meta_theorem_2",
+      "target": "meta_theorem_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "axiom_1",
+      "target": "meta_axiom_0",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_1",
+      "target": "meta_axiom_1",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_2",
+      "target": "meta_axiom_0",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_2",
+      "target": "meta_axiom_1",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_3",
+      "target": "meta_axiom_0",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_3",
+      "target": "meta_axiom_1",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_4",
+      "target": "meta_axiom_0",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_4",
+      "target": "meta_axiom_1",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_5",
+      "target": "meta_axiom_0",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_5",
+      "target": "meta_axiom_1",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_6",
+      "target": "meta_axiom_0",
+      "type": "derived_from"
+    },
+    {
+      "source": "axiom_6",
+      "target": "meta_axiom_1",
+      "type": "derived_from"
+    },
+    {
+      "source": "theorem_1",
+      "target": "meta_axiom_0",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_1",
+      "target": "axiom_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_2",
+      "target": "meta_axiom_0",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_2",
+      "target": "axiom_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_2",
+      "target": "axiom_5",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_3",
+      "target": "axiom_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_3",
+      "target": "axiom_5",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_4",
+      "target": "axiom_4",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_4",
+      "target": "axiom_5",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_4",
+      "target": "theorem_3",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_5",
+      "target": "meta_axiom_0",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_5",
+      "target": "meta_axiom_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_6",
+      "target": "meta_axiom_0",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_6",
+      "target": "axiom_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_6",
+      "target": "axiom_2",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_7",
+      "target": "axiom_4",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_7",
+      "target": "axiom_5",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_8",
+      "target": "axiom_2",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_8",
+      "target": "axiom_4",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_8",
+      "target": "axiom_6",
+      "type": "depends_on"
+    },
+    {
+      "source": "theorem_8",
+      "target": "theorem_1",
+      "type": "depends_on"
+    },
+    {
+      "source": "anchor_godel",
+      "target": "meta_axiom_1",
+      "type": "anchors_to"
+    },
+    {
+      "source": "anchor_kant",
+      "target": "meta_theorem_2",
+      "type": "anchors_to"
+    },
+    {
+      "source": "anchor_lacan",
+      "target": "theorem_7",
+      "type": "anchors_to"
+    },
+    {
+      "source": "anchor_quantum",
+      "target": "theorem_3",
+      "type": "anchors_to"
+    },
+    {
+      "source": "anchor_darwin",
+      "target": "theorem_4",
+      "type": "anchors_to"
+    },
+    {
+      "source": "anchor_marx",
+      "target": "theorem_4",
+      "type": "anchors_to"
+    },
+    {
+      "source": "anchor_aristotle",
+      "target": "meta_axiom_0",
+      "type": "anchors_to"
+    },
+    {
+      "source": "anchor_hilbert",
+      "target": "meta_axiom_1",
+      "type": "anchors_to"
+    }
   ]
 }

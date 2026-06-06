@@ -5,175 +5,531 @@
     "subtitle": "——星球级文明学",
     "author": "何国瑞",
     "version": "修订9",
-    "description": "基于智质生态学公理体系，用定量与定性相结合的方式研究文明系统的内部结构、相互作用、状态演化及相变条件。"
+    "description": "基于智质生态学公理体系，研究文明系统内部结构、相互作用、状态演化及相变条件的科学。"
   },
-
   "nodes": [
     {
-      "id": "civilization_dynamics",
-      "label": "文明动力学",
-      "type": "model",
-      "theory": "civilization_dynamics",
-      "description": "基于智质生态学公理体系，用定量与定性相结合的方式研究文明系统的内部结构、相互作用、状态演化及相变条件。"
-    },
-    {
-      "id": "cd_concept_double_structure",
+      "id": "concept_pyramid_discrete",
       "label": "金字塔-离散双结构",
+      "description": "文明系统的两种基本拓扑构型：金字塔型(生命基座)提供稳定性，离散型(意识场)提供创新活力。",
+      "tags": [
+        "拓扑",
+        "双结构"
+      ],
       "type": "concept",
-      "theory": "civilization_dynamics",
-      "description": "文明的系统拓扑定义：文明是一个基于共享元叙事和协作协议、能够在「金字塔型结构」（生命基座）与「离散型结构」（意识场）之间达成动态平衡的智质生态系统。",
-      "detail": "金字塔结构：以强大的集体意志驱动，追求极致的效率与稳定——对应智质引力与智质强力。\n离散型结构：以自由的节点活力拓展，守护创新的火种——对应智质电磁力与智质弱力。\n\n任何一种结构的绝对胜利都将导致文明的系统性崩溃——不是僵死，便是散架。",
-      "tags": ["文明定义", "拓扑", "生命基座", "意识场"]
+      "theory": "civilization_dynamics"
     },
     {
-      "id": "cd_force_gravity",
+      "id": "concept_advanced_protocol",
+      "label": "高级协议",
+      "description": "文明的第三种协调模式，通过元认知接口实现个体与集体智慧的闭环。",
+      "tags": [
+        "协议",
+        "协调"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_meta_narrative",
+      "label": "元叙事(M)",
+      "description": "文明的最高层级认知框架，作为拓扑约束规定物质基础、协作协议与信任契约的合法性边界。",
+      "tags": [
+        "叙事",
+        "约束"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_cognitive_protocol",
+      "label": "认知协议",
+      "description": "认知执行体对信息进行解构、重构、判断、传播的内部结构规则。",
+      "tags": [
+        "协议",
+        "认知"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_cognitive_executor",
+      "label": "认知执行体",
+      "description": "能够执行认知协议并参与认知传播的个体节点，是文明运行的基础单元。",
+      "tags": [
+        "执行体",
+        "节点"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_cmf",
+      "label": "复杂性代谢衰竭(CMF)",
+      "description": "文明系统因复杂度超出管理能力而导致的系统性崩溃机制。",
+      "tags": [
+        "病理",
+        "崩溃"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_civilization_state",
+      "label": "文明状态函数(CP)",
+      "description": "文明潜能 = Σ(个体生态位实现度) x 系统资源流动性 x (1 - 系统寄生体负担)。",
+      "tags": [
+        "状态",
+        "健康度"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_civilization_phase",
+      "label": "文明相变",
+      "description": "文明从\"集群心智\"到\"元认知集群智能\"的跃迁，需突破觉醒者比例与叙事接纳度双阈值。",
+      "tags": [
+        "相变",
+        "跃迁"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_three_phase_unity",
+      "label": "认知系统三相统一",
+      "description": "文明认知系统同时以实体相(认知执行体)、结构相(协同认知网络)、功能相(元认知集群智能)存在。",
+      "tags": [
+        "三相",
+        "认知"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_constitution_interface",
+      "label": "宪法接口",
+      "description": "金字塔与离散型结构之间的规则接口，用于裁定权限、传导价值、分配资源。",
+      "tags": [
+        "接口",
+        "制度"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_antagonistic_deficiency",
+      "label": "拮抗缺失定理",
+      "description": "文明子系统职能异化程度取决于母系统组件的元认知稀缺度与接口封锁度的乘积。",
+      "tags": [
+        "异化",
+        "缺失"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_civilization_immune",
+      "label": "文明免疫机制",
+      "description": "认知免疫闭环：执行体发现异常协议→通过网络传播→集群智能识别威胁→生成新协议→传播至执行体。",
+      "tags": [
+        "免疫",
+        "闭环"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_life_base",
+      "label": "生命基座",
+      "description": "金字塔型结构提供的确定性任务处理系统，保障文明的生存底线与整体稳定。",
+      "tags": [
+        "稳定",
+        "基础"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_conscious_field",
+      "label": "意识场",
+      "description": "离散型结构提供的不确定性探索空间，是创新与意义创造的源泉。",
+      "tags": [
+        "创新",
+        "探索"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_agreement_protocol",
+      "label": "价值对齐协议",
+      "description": "文明核心协议之一：任何系统级决策必须可追溯至对个体发展的促进。",
+      "tags": [
+        "协议",
+        "价值"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_truth_protocol",
+      "label": "真理发现协议",
+      "description": "文明核心协议之一：所有主张必须可被检验，任何权威叙事均可被挑战与修正。",
+      "tags": [
+        "协议",
+        "真理"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_attention_auction",
+      "label": "注意力拍卖协议",
+      "description": "文明核心协议之一：基于成果的事后价值评估，而非基于身份的事前预算分配。",
+      "tags": [
+        "协议",
+        "注意"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_phase_core_theorems",
+      "label": "相变核心定理(定理1-8)",
+      "description": "相变模型理论基础：认知不可逆、可复现、相变唯一性、阈值等价、系统寄生必然、双阈值耦合、繁荣期免疫变革、元叙事约束。",
+      "tags": [
+        "相变",
+        "定理"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "concept_protocol_fitness",
+      "label": "协议适应度函数",
+      "description": "F = E x R x O，协议适应度由生存一致性、现实解释力、系统开放性三者乘积决定。",
+      "tags": [
+        "适应度",
+        "协议"
+      ],
+      "type": "concept",
+      "theory": "civilization_dynamics"
+    },
+    {
+      "id": "force_noo_gravity",
       "label": "智质引力（生存意志驱动）",
       "type": "model",
       "theory": "civilization_dynamics",
-      "description": "最普遍、最底层的吸引力，维系整个智质生态存在的时空曲率。来自公理四（生存意志驱动），是所有行为与结构的终极背景驱动力。",
-      "detail": "意义：来源于我最初在工地上那种「不想被泯灭」的强烈冲动——那不是简单的情绪，而是维系整个智质宇宙的「万有引力」。\n\n实例：\n- （凝聚）罗马帝国的「面包与马戏」：通过满足生存需求产生强大向心力\n- （扩张）大航海时代：对香料、黄金的生存需求与传播福音的意志驱动文明跨越地理边界",
-      "tags": ["基本力", "生存引力", "向心力"]
+      "description": "最普遍的吸引力，维系智质生态存在。源于公理三(自组织趋势)。案例：罗马帝国面包与马戏、大航海时代。",
+      "tags": [
+        "引力",
+        "生存意志"
+      ]
     },
     {
-      "id": "cd_force_electromagnetic",
+      "id": "force_noo_em",
       "label": "智质电磁力（认知框架相对性）",
       "type": "model",
       "theory": "civilization_dynamics",
-      "description": "决定「智质电荷」如何相互作用。它负责吸引（共鸣）与排斥（冲突），形成所有认知结构与协作模式的工程师。",
-      "detail": "意义：正是这种力，使得「同类」相见恨晚，「异类」话不投机半句多。它通过框架间的吸引与排斥，自然地筛选出更兼容、更高效的协作模式。\n\n实例：\n- （吸引）文艺复兴时期希腊经典的复兴\n- （排斥）伽利略与教会的冲突：日心说框架与地心说框架的根本性排斥",
-      "tags": ["基本力", "框架吸引", "框架排斥"]
+      "description": "决定信息、概念如何相互作用的力。案例：文艺复兴、伽利略与教会冲突。",
+      "tags": [
+        "电磁力",
+        "认知框架"
+      ]
     },
     {
-      "id": "cd_force_weak",
+      "id": "force_noo_weak",
       "label": "智质弱力（符号即智质基因）",
       "type": "model",
       "theory": "civilization_dynamics",
-      "description": "负责「认知放射性衰变」——改变认知元素的基本性质，实现信息变异与文化演化的根本动力。它是「范式革命」的微观引擎。",
-      "detail": "意义：当一个旧概念（如「内卷」）被赋予新解时，你就目睹了「弱力」的作用。它打破僵化的稳定，为系统注入变异的可能性。\n\n实例：\n- 「同志」一词的语义流变：从革命称谓→日常称呼→特定群体代称\n- 爱因斯坦相对论对「同时性」的重构",
-      "tags": ["基本力", "范式革命", "概念衰变"]
+      "description": "负责认知放射性衰变，改变认知元素性质。案例：\"同志\"语义流变、爱因斯坦相对论。",
+      "tags": [
+        "弱力",
+        "符号变异"
+      ]
     },
     {
-      "id": "cd_force_strong",
+      "id": "force_noo_strong",
       "label": "智质强力（认知路径依赖）",
       "type": "model",
       "theory": "civilization_dynamics",
-      "description": "在极短程内将认知「夸克」牢牢束缚成稳定的核心信念、世界观、文化传统。赋予认知结构以稳定性与惯性。",
-      "detail": "意义：你的习惯、你的文化底色，之所以难以改变，正是因为「强力」的束缚。它保持了个体与文明的连续性，避免了陷入彻底混沌。\n\n实例：\n- 中华文明的「大一统」观念：如同强力束缚夸克，将无数差异巨大的地区牢牢束缚成一个文明实体\n- 英国的普通法系：基于判例的路径依赖构成其法律系统稳定不变的核心",
-      "tags": ["基本力", "路径依赖", "文化惯性"]
+      "description": "将认知夸克束缚成稳定核心信念。案例：中华文明大一统、英国普通法系。",
+      "tags": [
+        "强力",
+        "路径依赖"
+      ]
     },
     {
-      "id": "cd_equation_growth",
+      "id": "equation_cognition_network",
       "label": "认知网络生长方程",
       "type": "equation",
       "theory": "civilization_dynamics",
-      "description": "描述一次认知连接是否建立的核心方程。连接倾向 = (生存意志₁ × 生存意志₂) / (框架距离² + 认知惯性常量)。",
-      "detail": "这是「社交能耗定理」的数学化身。\n\n分子：生存意志的乘积——任何一方的意愿缺失都会显著降低连接可能。\n分母：框架距离的平方 + 认知惯性常量——框架差异具有「放大效应」。\n\n案例代入（与中文系女士的对话）：意志9×3=27，框架距离8→64+1=65，结果≈0.42——量化了「闭口禅」协议的决策依据。",
-      "tags": ["方程", "社交能耗", "认知连接"]
+      "description": "P ∝ (W1 x W2)/(D2 + ε) 描述认知连接倾向，取决于双方生存意志与框架距离。",
+      "tags": [
+        "方程",
+        "认知"
+      ]
     },
     {
-      "id": "cd_equation_gene",
+      "id": "equation_gene_spread",
       "label": "智质基因传播方程",
       "type": "equation",
       "theory": "civilization_dynamics",
-      "description": "基于SIR模型变体的微分方程，描述概念、叙事、热词在群体中流行度的动态变化。",
-      "detail": "核心变量：\n- I(t)：已流行度\n- S(t)：未流行度\n- β：感染强度\n- γ：遗忘率\n- δ：竞争抑制\n\n案例代入（「内卷」概念的早期爆发）：感染强度高（切中全民生存焦虑），框架兼容度高（与多数人职场/学业体验共鸣），预测为正变化率——概念将进入加速传播期，与现实观察一致。",
-      "tags": ["方程", "流行度", "SIR模型", "概念传播"]
+      "description": "dI/dt = βSI(1+γN) - δI 描述概念流行度动态变化，融合SIR模型与公理五。",
+      "tags": [
+        "方程",
+        "传播"
+      ]
     },
     {
-      "id": "cd_equation_niche",
+      "id": "equation_niche_competition",
       "label": "生态位竞争方程",
       "type": "equation",
       "theory": "civilization_dynamics",
-      "description": "描述个体或组织如何获取和维持资源（注意力、声望、资本）的动力学方程。",
-      "detail": "修正式强调资源的外部注入性，突出信息工具与生态位的核心作用。\n\n简化版测量工具：「个体生态位实现度」快速自评问卷（v1.0）\n五个维度：才能发挥度、技能匹配度、价值认同度、成长加速度、能量平衡度\n\n案例代入：从「项目经理」到「系统诊断师」的生态位跃迁量化对比。",
-      "tags": ["方程", "生态位", "资源竞争", "自评工具"]
+      "description": "描述智质生态位如何获取和维持资源，修正传统生物竞争模型。",
+      "tags": [
+        "方程",
+        "竞争"
+      ]
     },
     {
-      "id": "cd_equation_phase",
+      "id": "equation_cognition_phase",
       "label": "个体认知相变方程",
       "type": "equation",
       "theory": "civilization_dynamics",
-      "description": "连接微观个体认知与宏观文明动力学的桥梁方程。认知逃逸概率 = (认知失调 × 元认知能力) / (范式权威 × 个体内化数量)。",
-      "detail": "推导路径：定理27（认知范式约束强度）→ 引入认知失调因子 → 纳入文明环境认知流动性常数。\n\n意义：\n- 统一了微观与宏观\n- 定义了文明进步的底层机制\n- 揭示了「先驱者」的必然孤独：在旧范式稳固期，即使元认知能力卓越的个体，逃逸概率也极低",
-      "tags": ["方程", "认知相变", "先驱者", "宏观-微观桥接"]
+      "description": "P_escape ∝ (A x ω) / (A x N x M) x φ 元认知逃逸定量模型。",
+      "tags": [
+        "方程",
+        "相变"
+      ]
     },
     {
-      "id": "cd_model_state_function",
-      "label": "文明健康度状态函数",
+      "id": "model_state_function",
+      "label": "文明状态函数",
       "type": "model",
       "theory": "civilization_dynamics",
-      "description": "文明潜能 = Σ(个体生态位实现度) × 系统资源流动性 × (1 - 系统寄生体负担)。文明理论的「E=mc²」。",
-      "detail": "三个核心变量：\n1) 个体生态位实现度总和——每个成员才能发挥的程度\n2) 系统资源流动性——信息、资本、能量在系统中的流通效率\n3) 系统寄生体负担——阻碍资源流动的系统内耗\n\n文明疾病诊断：\n- 金字塔肥大症 → 文明僵化（如晚清）\n- 离散场失序 → 文明解体（如罗马晚期）\n- 接口癌变 → 文明内耗（系统寄生体阻碍资源流动）",
-      "tags": ["状态函数", "文明诊断", "健康度"]
+      "description": "文明潜能 = Σ(个体生态位实现度) x 系统资源流动性 x (1 - 系统寄生体负担)",
+      "tags": [
+        "状态函数",
+        "健康度"
+      ]
     },
     {
-      "id": "cd_model_phase_transition",
-      "label": "文明相变：从集群心智到元认知集群智能",
+      "id": "model_phase_transition",
+      "label": "文明相变模型",
       "type": "model",
       "theory": "civilization_dynamics",
-      "description": "基于内在动力学参数的、可检验的文明跃迁模型。当个体认知逃逸概率的统计密度超过临界阈值时，文明层级发生范式跃迁。",
-      "detail": "当前人类文明正呈现两种宏大的战略分化：\n- 路径A（金字塔结构）：引力-强力优势模型，应对确定性挑战高效\n- 路径B（离散结构）：电磁力-弱力优势模型，在不确定性探索中占先\n\n文明的健康出路不是选择其中一条，而是通过「高级协议」机制超越二者对立——实现从「集群心智」到「元认知集群智能」的相变。",
-      "tags": ["相变", "文明跃迁", "元认知", "高级协议"]
+      "description": "文明从\"集群心智\"到\"元认知集群智能\"的相变，需达到双阈值：觉醒者比例>21%且叙事接纳度>80%。",
+      "tags": [
+        "相变",
+        "双阈值"
+      ]
     },
     {
-      "id": "cd_concept_advanced_protocol",
-      "label": "高级协议",
-      "type": "concept",
+      "id": "model_health_dynamics",
+      "label": "系统健康度动力学模型",
+      "type": "model",
       "theory": "civilization_dynamics",
-      "description": "超越金字塔与离散对立的第三种机制：通过共享规则和信任契约，同时保障生命基座的稳定与意识场的活力。",
-      "detail": "健康的文明必然向「协议模式」演进，因为只有高级协议能同时保障基座的稳定与场域的活力。\n\n这是《文明动力学》的核心实践主张——不是支持任何一方「主义」，而是超越二者对立的「架构」。",
-      "tags": ["协议", "第三条道路", "架构"]
+      "description": "嵌套微分方程量化文明级范式架构健康度与子系统健康度的动态演化。",
+      "tags": [
+        "动力学",
+        "健康度"
+      ]
     },
     {
-      "id": "cd_case_rome",
-      "label": "案例：罗马帝国",
+      "id": "model_cognitive_state",
+      "label": "文明认知状态方程",
+      "type": "model",
+      "theory": "civilization_dynamics",
+      "description": "C = P x D x T，文明认知状态由协议分布、扩散速度、通信拓扑三者乘积决定。",
+      "tags": [
+        "认知",
+        "状态"
+      ]
+    },
+    {
+      "id": "case_roman",
+      "label": "罗马帝国",
       "type": "case",
       "theory": "civilization_dynamics",
-      "description": "罗马帝国的「面包与马戏」展示了智质引力如何通过满足生存需求产生强大的文明向心力。罗马晚期的失序则展示了离散场失序的解体过程。",
-      "detail": "罗马帝国是金字塔结构与离散结构失衡的典型案例：\n- 鼎盛期：法律体系（高级协议雏形）+ 军团（金字塔支撑）+ 网络（道路/贸易）\n- 晚期：官僚体系过度膨胀（金字塔肥大）+ 公民精神流失（离散场失序）→ 系统解体",
-      "tags": ["历史案例", "罗马", "文明兴衰"]
+      "description": "\"面包与马戏\"展示智质引力的凝聚效应；晚期离散场失序导致解体。",
+      "tags": [
+        "历史",
+        "帝国",
+        "引力"
+      ]
     },
     {
-      "id": "cd_case_china",
-      "label": "案例：中华文明",
+      "id": "case_chinese",
+      "label": "中华文明",
       "type": "case",
       "theory": "civilization_dynamics",
-      "description": "中华文明的「大一统」观念是智质强力的典型表现——将无数差异巨大的地区束缚成一个文明实体。儒家伦理充当了共享协作协议的角色。",
-      "detail": "系统拓扑分析：强金字塔 + 弱离散型（儒家伦理为协议）\n\n王朝周期律在本框架下被重新解释为金字塔结构周期性失衡的系统动力学现象。《文明动力学》提出：通过元认知集群智能的涌现，王朝周期律可以终结。",
-      "tags": ["历史案例", "中华文明", "大一统", "王朝周期"]
+      "description": "强金字塔+弱离散型，儒家伦理为协议。\"大一统\"体现智质强力；晚清金字塔肥大症。",
+      "tags": [
+        "历史",
+        "中华",
+        "强力"
+      ]
     },
     {
-      "id": "cd_case_greece",
-      "label": "案例：希腊文明",
+      "id": "case_greek",
+      "label": "希腊文明",
       "type": "case",
       "theory": "civilization_dynamics",
-      "description": "希腊文明展示了弱金字塔 + 强离散型的文明拓扑。哲学辩论作为共享协议，催生了影响深远的思想创新。",
-      "detail": "系统拓扑分析：弱金字塔 + 强离散型（哲学辩论为协议）\n\n希腊文明的活力来源于离散型意识场的强活跃度（智质电磁力 + 智质弱力），但其脆弱性也源于金字塔结构支撑不足——最终被更强大的金字塔文明（罗马）吸收。",
-      "tags": ["历史案例", "希腊", "哲学", "城邦"]
+      "description": "弱金字塔+强离散型，哲学辩论为协议。展现智质电磁力与弱力的活跃。",
+      "tags": [
+        "历史",
+        "希腊"
+      ]
+    },
+    {
+      "id": "case_renaissance",
+      "label": "文艺复兴",
+      "type": "case",
+      "theory": "civilization_dynamics",
+      "description": "希腊经典复兴体现智质电磁力的吸引效应，催生全新艺术与科学范式。",
+      "tags": [
+        "历史",
+        "电磁力"
+      ]
+    },
+    {
+      "id": "case_galleo",
+      "label": "伽利略与教会冲突",
+      "type": "case",
+      "theory": "civilization_dynamics",
+      "description": "日心说框架与地心说框架的根本排斥，体现智质电磁力冲突效应。",
+      "tags": [
+        "历史",
+        "科学"
+      ]
+    },
+    {
+      "id": "case_modern_west",
+      "label": "现代西方文明",
+      "type": "case",
+      "theory": "civilization_dynamics",
+      "description": "中度金字塔+强离散型，宪法民主为协议。展现\"电磁力-弱力\"优势模型。",
+      "tags": [
+        "历史",
+        "西方"
+      ]
+    },
+    {
+      "id": "case_mobile_platform",
+      "label": "某外卖平台(2013-2021)",
+      "type": "case",
+      "theory": "civilization_dynamics",
+      "description": "系统健康度动力学模型的实证案例，展示从创业期到异化期完整生命周期。",
+      "tags": [
+        "案例",
+        "企业"
+      ]
+    },
+    {
+      "id": "case_involution",
+      "label": "\"内卷\"符号传播",
+      "type": "case",
+      "theory": "civilization_dynamics",
+      "description": "智质基因传播方程的实证：一个学术术语如何改变整个世代的生态位感知。",
+      "tags": [
+        "案例",
+        "符号"
+      ]
     }
   ],
-
   "relationships": [
-    { "source": "civilization_dynamics", "target": "noo_ecology", "type": "extends_to", "label": "宏观延伸" },
-    { "source": "noo_ecology", "target": "system_ontology", "type": "extends_to", "label": "实例化" },
-
-    { "source": "cd_concept_double_structure", "target": "noo_ecology", "type": "belongs_to" },
-    { "source": "cd_force_gravity", "target": "axiom_4", "type": "derived_from", "label": "文明层实例" },
-    { "source": "cd_force_electromagnetic", "target": "concept_axiom_3_noo", "type": "derived_from", "label": "认知框架相对性" },
-    { "source": "cd_force_weak", "target": "concept_axiom_4_noo", "type": "derived_from", "label": "符号即基因" },
-    { "source": "cd_force_strong", "target": "corollary_path_dependence_noo", "type": "derived_from", "label": "认知路径依赖" },
-
-    { "source": "cd_equation_growth", "target": "cd_concept_double_structure", "type": "depends_on" },
-    { "source": "cd_equation_gene", "target": "cd_concept_double_structure", "type": "depends_on" },
-    { "source": "cd_equation_niche", "target": "cd_concept_double_structure", "type": "depends_on" },
-    { "source": "cd_equation_phase", "target": "cd_concept_double_structure", "type": "depends_on" },
-
-    { "source": "cd_model_state_function", "target": "cd_equation_niche", "type": "derived_from" },
-    { "source": "cd_model_phase_transition", "target": "cd_equation_phase", "type": "derived_from" },
-    { "source": "cd_concept_advanced_protocol", "target": "cd_model_phase_transition", "type": "depends_on" },
-
-    { "source": "cd_case_rome", "target": "cd_force_gravity", "type": "instantiates" },
-    { "source": "cd_case_china", "target": "cd_force_strong", "type": "instantiates" },
-    { "source": "cd_case_greece", "target": "cd_force_electromagnetic", "type": "instantiates" }
+    {
+      "source": "force_noo_gravity",
+      "target": "axiom_3",
+      "type": "derived_from"
+    },
+    {
+      "source": "force_noo_gravity",
+      "target": "noo_ecology",
+      "type": "extends_to"
+    },
+    {
+      "source": "force_noo_em",
+      "target": "axiom_4",
+      "type": "derived_from"
+    },
+    {
+      "source": "force_noo_weak",
+      "target": "axiom_5",
+      "type": "derived_from"
+    },
+    {
+      "source": "force_noo_strong",
+      "target": "axiom_4",
+      "type": "derived_from"
+    },
+    {
+      "source": "case_roman",
+      "target": "force_noo_gravity",
+      "type": "instantiates"
+    },
+    {
+      "source": "case_chinese",
+      "target": "force_noo_strong",
+      "type": "instantiates"
+    },
+    {
+      "source": "case_chinese",
+      "target": "force_noo_gravity",
+      "type": "instantiates"
+    },
+    {
+      "source": "case_greek",
+      "target": "force_noo_em",
+      "type": "instantiates"
+    },
+    {
+      "source": "case_renaissance",
+      "target": "force_noo_em",
+      "type": "instantiates"
+    },
+    {
+      "source": "case_galleo",
+      "target": "force_noo_em",
+      "type": "instantiates"
+    },
+    {
+      "source": "case_involution",
+      "target": "force_noo_weak",
+      "type": "instantiates"
+    },
+    {
+      "source": "case_modern_west",
+      "target": "force_noo_em",
+      "type": "instantiates"
+    },
+    {
+      "source": "case_modern_west",
+      "target": "force_noo_weak",
+      "type": "instantiates"
+    },
+    {
+      "source": "equation_cognition_network",
+      "target": "concept_cognitive_frame",
+      "type": "depends_on"
+    },
+    {
+      "source": "equation_gene_spread",
+      "target": "concept_cognitive_frame",
+      "type": "depends_on"
+    },
+    {
+      "source": "equation_niche_competition",
+      "target": "concept_noo_niche",
+      "type": "depends_on"
+    },
+    {
+      "source": "equation_cognition_phase",
+      "target": "concept_cognitive_frame",
+      "type": "depends_on"
+    }
   ]
 }
