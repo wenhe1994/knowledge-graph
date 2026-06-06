@@ -112,32 +112,66 @@
       .nodeRelSize(2)
       .nodeVal(d => d.val)
       .nodeOpacity(0.9)
+      .nodeCanvasObjectMode(() => 'replace')
       .nodeCanvasObject((node, ctx, globalScale) => {
-        const label = node.name;
-        const fontSize = 10 / globalScale;
-        ctx.font = `${fontSize}px sans-serif`;
-        const textWidth = ctx.measureText(label).width;
-        const bkgWidth = textWidth + 8;
-        const bkgHeight = fontSize + 4;
+        const r = Math.max(3, node.val * 3);
+        const color = COLORS[node.type] || '#888';
 
-        // 背景标签
-        ctx.fillStyle = 'rgba(8,8,24,0.75)';
-        ctx.roundRect(node.x - bkgWidth / 2, node.y - 12 - bkgHeight, bkgWidth, bkgHeight, 3);
+        // 绘制圆球（带发光）
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
+        ctx.fillStyle = color;
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 10;
         ctx.fill();
-        ctx.fillStyle = '#c0c0d0';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        ctx.fillText(label, node.x, node.y - 14);
+        ctx.shadowBlur = 0;
 
         // 节点光晕（仅高亮时）
         if (currentHighlight === node.id) {
           ctx.beginPath();
-          ctx.arc(node.x, node.y, node.val * 6 + 4, 0, 2 * Math.PI, false);
-          ctx.fillStyle = COLORS[node.type] || '#888';
-          ctx.globalAlpha = 0.2;
+          ctx.arc(node.x, node.y, r + 6, 0, 2 * Math.PI, false);
+          ctx.fillStyle = color;
+          ctx.globalAlpha = 0.25;
           ctx.fill();
           ctx.globalAlpha = 1;
         }
+
+        // 绘制名称标签（兼容所有浏览器，不用 roundRect）
+        const label = node.name;
+        if (!label) return;
+        const fontSize = Math.max(7, 11 / globalScale);
+        ctx.font = `bold ${fontSize}px "Microsoft YaHei", "PingFang SC", sans-serif`;
+        const textWidth = ctx.measureText(label).width;
+        const pad = 4;
+        const bkgW = textWidth + pad * 2;
+        const bkgH = fontSize + pad * 2;
+        const bx = node.x - bkgW / 2;
+        const by = node.y + r + 4;
+
+        // 手动绘制圆角矩形背景（兼容所有浏览器）
+        const rad = 3;
+        ctx.beginPath();
+        ctx.moveTo(bx + rad, by);
+        ctx.lineTo(bx + bkgW - rad, by);
+        ctx.quadraticCurveTo(bx + bkgW, by, bx + bkgW, by + rad);
+        ctx.lineTo(bx + bkgW, by + bkgH - rad);
+        ctx.quadraticCurveTo(bx + bkgW, by + bkgH, bx + bkgW - rad, by + bkgH);
+        ctx.lineTo(bx + rad, by + bkgH);
+        ctx.quadraticCurveTo(bx, by + bkgH, bx, by + bkgH - rad);
+        ctx.lineTo(bx, by + rad);
+        ctx.quadraticCurveTo(bx, by, bx + rad, by);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(8,8,24,0.78)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+
+        // 标签文字
+        ctx.fillStyle = '#d0d0e8';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(label, node.x, by + bkgH / 2);
       })
       // 粒子效果
       .linkColor(() => 'rgba(100, 130, 200, 0.2)')
