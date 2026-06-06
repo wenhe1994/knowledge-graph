@@ -1,0 +1,164 @@
+{
+  "theory": {
+    "id": "noo_ecology",
+    "label": "智质生态学",
+    "subtitle": "——认知、社会与文明动力学的统一框架",
+    "author": "何国瑞",
+    "version": "公理体系2.0",
+    "description": "基于系统本体论公理系统，研究智质（Noetic）层面的生态动力学——认知、符号、框架如何在个体与社会中演化。"
+  },
+
+  "nodes": [
+    {
+      "id": "noo_ecology",
+      "label": "智质生态学公理体系",
+      "type": "model",
+      "theory": "noo_ecology",
+      "description": "基于系统本体论六条系统公理，在认知与社会层面的具体实例化。将抽象的公理转化为可操作的认知分析工具。",
+      "detail": "《智质生态学》是一个理论家族，包含：\n- 智质生态位（核心专著，已完成著作权登记）\n- 智质心理学（子领域-个体心智）\n- 智质生态学操作手册\n- 智质生态寓言集\n\n其核心公理体系已发布SSRN预印本，同步开发国际期刊投稿。",
+      "tags": ["理论体系", "认知生态", "社会动力学"]
+    },
+    {
+      "id": "concept_noetic_niche",
+      "label": "智质生态位",
+      "type": "concept",
+      "theory": "noo_ecology",
+      "description": "个体或系统在智质生态中所占据的「生态位」——由其所掌握的符号资源、认知框架、协作网络共同定义的生存与发展空间。",
+      "detail": "智质生态位是智质生态学的核心概念，类比生态学中的「生态位」（niche），但在智质层面重新定义：\n- 不是物质资源的占有，而是信息/符号/认知资源的占据与维护\n- 生态位的优劣取决于：信息获取能力、框架兼容度、网络协同效应\n\n完整理论见《智质生态位》专著（已有著作权登记）。",
+      "tags": ["核心概念", "生态位", "符号资源"]
+    },
+    {
+      "id": "concept_axiom_1_noo",
+      "label": "公理一（智质版）：逻辑自指与心智涌现",
+      "type": "axiom",
+      "theory": "noo_ecology",
+      "description": "在认知系统中，逻辑自指能力表现为个体的元认知与内部模拟能力。心智是逻辑自指在生物系统中的涌现现象。",
+      "detail": "智质生态学将系统本体论公理一在认知层面实例化：\n- 个体心智 = 系统本体论「逻辑子宇宙」在生物脑中的实现\n- 社会心智 = 多个逻辑子宇宙通过符号协议协同形成的涌现整体\n\n此公理是《智质心理学》的奠基公理。",
+      "tags": ["智质版公理", "心智", "元认知"]
+    },
+    {
+      "id": "concept_axiom_3_noo",
+      "label": "公理三（智质版）：认知框架相对性",
+      "type": "axiom",
+      "theory": "noo_ecology",
+      "description": "认知系统通过框架与世界相互作用。不同框架对同一符号的解读可能存在系统性差异。框架本身是系统与环境的共构产物。",
+      "detail": "这是文明动力学中「智质电磁力」的理论基础。\n\n框架距离的量化评估（用于认知网络生长方程）：\n1) 概念定义维度：对核心符号的解读一致性\n2) 价值排序维度：抽象价值的优先级顺序\n3) 论证逻辑维度：论证中最终诉诸的元判据（元符号）",
+      "tags": ["智质版公理", "框架", "认知相对性"]
+    },
+    {
+      "id": "concept_axiom_4_noo",
+      "label": "公理四（智质版）：符号即智质基因",
+      "type": "axiom",
+      "theory": "noo_ecology",
+      "description": "符号是智质层面的「基因」——它们携带信息、通过传播复制自身、在宿主之间发生变异和选择。符号的演化遵循类似生物进化的动力学。",
+      "detail": "符号的公理属性：\n- 载体独立性：同一符号可以在不同物质媒介（声音、文字、神经信号）中实例化\n- 传播复制：符号在个体之间传播时保留其核心结构\n- 变异选择：符号在传播过程中发生变异，经由认知选择压力筛选\n\n这是文明动力学中「智质弱力」的理论基础。",
+      "tags": ["智质版公理", "符号", "基因", "模因"]
+    },
+    {
+      "id": "corollary_path_dependence_noo",
+      "label": "推论：认知路径依赖",
+      "type": "corollary",
+      "theory": "noo_ecology",
+      "description": "认知系统的发展高度依赖其历史路径——早期建立的框架结构塑造了后续所有信息处理的通道与边界。",
+      "detail": "这是文明动力学中「智质强力」的理论基础。\n\n路径依赖的动力学表现：\n- 锁定效应：一旦选择某一框架，切换成本随时间递增\n- 自我强化：已有框架会主动筛选和扭曲新信息以维护自身\n- 认知惯性：即使面对反例，框架的调整也是渐进而非突变",
+      "tags": ["推论", "路径依赖", "锁定", "惯性"]
+    },
+    {
+      "id": "concept_cognitive_framework",
+      "label": "认知框架",
+      "type": "concept",
+      "theory": "noo_ecology",
+      "description": "系统用于组织、解释和预测信息的结构化模式。框架定义了什么是「事实」、什么是「有意义的问题」、什么是「可接受的答案」。",
+      "detail": "认知框架是智质生态学的核心操作单位：\n- 框架决定信息筛选标准（注意什么、忽略什么）\n- 框架决定推理路径（从什么地方出发、往什么方向走）\n- 框架决定价值排序（什么重要、什么不重要）\n\n框架之间的「距离」是可以量化的——见认知网络生长方程。",
+      "tags": ["核心概念", "框架", "认知结构"]
+    },
+    {
+      "id": "concept_noetic_gene",
+      "label": "智质基因",
+      "type": "concept",
+      "theory": "noo_ecology",
+      "description": "智质层面的最小可复制信息单位。概念、叙事、理论、热词、仪式、工具使用方式——一切可以通过学习传播的认知模式都是智质基因。",
+      "detail": "智质基因 = 系统本体论中「智质态」在认知层的基本单位。\n\n关键属性：\n- 可复制性：通过教育、模仿、传播被复制\n- 可变异：在传播过程中发生内容或形式的变异\n- 选择压力：认知兼容度、实用价值、情感共鸣等决定其存续\n\n智质基因传播方程（SIR变体）描述了其流行度的动态变化。",
+      "tags": ["核心概念", "基因", "复制子", "信息单位"]
+    },
+    {
+      "id": "concept_symbol_capital",
+      "label": "符号资本",
+      "type": "concept",
+      "theory": "noo_ecology",
+      "description": "个体所掌握的符号资源总量，包括概念储备、叙事能力、隐喻库、专业知识等。符号资本决定了在智质生态中的竞争地位。",
+      "detail": "类比布迪厄的「文化资本」概念，但在智质生态学框架中重新定义：\n- 符号资本是可量化的（概念数量 × 概念精度 × 框架灵活度）\n- 符号资本是生态位的核心构成要素\n- 符号资本的积累遵循「马太效应」：已有更多符号资本的人更容易获取新的符号资本",
+      "tags": ["概念", "符号资本", "布迪厄"]
+    },
+    {
+      "id": "concept_cognitive_resonance",
+      "label": "认知共鸣与排斥",
+      "type": "concept",
+      "theory": "noo_ecology",
+      "description": "当两个认知框架的「距离」较小时，它们之间产生认知共鸣——信息传递高效、理解成本低。距离较大时产生排斥——话不投机、沟通障碍。",
+      "detail": "这是「智质电磁力」在微观层面的表现：\n- 共鸣：框架匹配度高→信息传递能耗低→合作倾向增强\n- 排斥：框架匹配度低→信息传递能耗高→合作倾向降低\n\n认知共鸣不是简单的「意见一致」，而是深层的「框架兼容」——包括概念定义的可通约性、价值排序的可比性、论证方式的可理解性。",
+      "tags": ["概念", "共鸣", "排斥", "框架匹配"]
+    },
+    {
+      "id": "anchor_noo_ecology_bourdieu",
+      "label": "与布迪厄文化资本理论对话",
+      "type": "anchor",
+      "theory": "noo_ecology",
+      "description": "布迪厄的「文化资本」是智质生态学的先驱洞见。智质生态学将其一般化为「符号资本」，并纳入公理化的系统动力学框架。",
+      "detail": "布迪厄的贡献：揭示了文化资源在社会阶级再生产中的核心作用。\n\n智质生态学的扩展：\n1) 从社会学到一般系统理论——符号资本的竞争不止发生在人类社会\n2) 从描述到量化——符号资本可测量，竞争可用生态位方程建模\n3) 从批判到建设——揭示规律是为了设计更健康的认知生态",
+      "tags": ["布迪厄", "文化资本", "社会学", "扩展"]
+    },
+    {
+      "id": "noo_psychology",
+      "label": "智质心理学：基于系统本体论的心智统一理论",
+      "type": "model",
+      "theory": "noo_ecology",
+      "description": "将智质生态学公理体系应用于个体心智层面的统一理论。已完成专著（PDF 459KB），尝试整合现有心理学流派。",
+      "detail": "智质心理学的定位：\n- 为现有心理学流派（认知心理学、精神分析、人本主义、行为主义等）提供统一的底层框架\n- 将「心智」视为逻辑自指动力学在生物系统中的表现\n- 将「心理障碍」重新解释为认知框架的结构性失衡\n\n已投稿 Consciousness and Cognition 等期刊。",
+      "tags": ["心理学", "统一理论", "心智模型"]
+    },
+    {
+      "id": "noo_ecology_manual",
+      "label": "智质生态学操作手册",
+      "type": "model",
+      "theory": "noo_ecology",
+      "description": "从「觉醒到构建」的实践指南——将智质生态学的公理体系转化为可操作的认知工具和生存策略。",
+      "detail": "操作手册面向实践者：\n- 如何识别自己的智质生态位\n- 如何量化认知框架距离\n- 如何设计与实施「认知逃逸」\n- 如何在智质生态中构建健康的协作网络",
+      "tags": ["操作手册", "实践", "方法论"]
+    },
+    {
+      "id": "noo_ecology_fables",
+      "label": "智质生态学寓言集",
+      "type": "model",
+      "theory": "noo_ecology",
+      "description": "通过寓言故事诠释智质生态学的核心概念和公理体系。降低理论的理解门槛，面向更广泛的读者群。",
+      "detail": "寓言集是智质生态学的「普及层」——用叙事的方式传递核心洞见。\n\n智质生态学体系的三个表述层次：\n1) 公理体系（形式化、严谨）\n2) 操作手册（实践指导）\n3) 寓言集（叙事传播）",
+      "tags": ["寓言", "普及", "叙事"]
+    }
+  ],
+
+  "relationships": [
+    { "source": "noo_ecology", "target": "system_ontology", "type": "extends_to", "label": "实例化" },
+    { "source": "civilization_dynamics", "target": "noo_ecology", "type": "extends_to", "label": "宏观延伸" },
+
+    { "source": "concept_axiom_1_noo", "target": "axiom_1", "type": "instantiates" },
+    { "source": "concept_axiom_3_noo", "target": "axiom_3", "type": "instantiates" },
+    { "source": "concept_axiom_4_noo", "target": "axiom_2", "type": "instantiates", "label": "符号->智质态" },
+    { "source": "corollary_path_dependence_noo", "target": "concept_axiom_4_noo", "type": "derived_from" },
+
+    { "source": "concept_noetic_niche", "target": "noo_ecology", "type": "belongs_to" },
+    { "source": "concept_cognitive_framework", "target": "noo_ecology", "type": "belongs_to" },
+    { "source": "concept_noetic_gene", "target": "noo_ecology", "type": "belongs_to" },
+    { "source": "concept_symbol_capital", "target": "noo_ecology", "type": "belongs_to" },
+    { "source": "concept_cognitive_resonance", "target": "noo_ecology", "type": "belongs_to" },
+
+    { "source": "concept_symbol_capital", "target": "concept_noetic_niche", "type": "depends_on" },
+    { "source": "concept_cognitive_resonance", "target": "concept_cognitive_framework", "type": "depends_on" },
+
+    { "source": "noo_psychology", "target": "concept_axiom_1_noo", "type": "derived_from" },
+    { "source": "noo_ecology_manual", "target": "noo_ecology", "type": "depends_on" },
+    { "source": "noo_ecology_fables", "target": "noo_ecology", "type": "depends_on" },
+
+    { "source": "anchor_noo_ecology_bourdieu", "target": "concept_symbol_capital", "type": "anchors_to" }
+  ]
+}

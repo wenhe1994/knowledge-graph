@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智质生态学 · 3D 知识图谱</title>
+  <meta name="description" content="系统本体论 · 智质生态学 · 文明动力学 — 3D互动知识图谱">
+  <link rel="stylesheet" href="css/style-3d.css">
+</head>
+<body>
+
+  <!-- ===== 工具栏 ===== -->
+  <nav class="toolbar">
+    <div class="toolbar-brand">
+      <span class="brand-icon">◈</span>
+      <span>知识图谱</span>
+      <span class="brand-sub">3D · 智质生态学 · 系统本体论 · 文明动力学</span>
+    </div>
+    <div class="toolbar-search">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="search-input" placeholder="搜索概念…" autocomplete="off">
+    </div>
+    <div class="toolbar-filters" id="theory-filters"></div>
+    <button class="toolbar-reset" id="reset-btn">⟲</button>
+  </nav>
+
+  <!-- ===== 3D 容器 ===== -->
+  <div id="graph-container"></div>
+
+  <!-- ===== 详情面板 ===== -->
+  <aside class="detail-panel" id="detail-panel"></aside>
+
+  <!-- ===== 图例 ===== -->
+  <div class="legend">
+    <div class="legend-title">节点类型</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff4455;"></span>元公理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff8822;"></span>元定理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#3388ff;"></span>公理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#33dd88;"></span>定理/推论</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#aa66ff;"></span>概念</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ffaa22;"></span>方程</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#22ddaa;"></span>模型</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#778899;"></span>实例</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff5599;"></span>跨学科锚点</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#cc77ff;"></span>方法论</div>
+  </div>
+
+  <!-- ===== 提示 ===== -->
+  <div class="hint-bar" id="hint-bar">🚀 加载中…</div>
+
+  <!-- ===== CDN: 3d-force-graph ===== -->
+  <script src="js/3d-force-graph.min.js"></script>
+
+  <!-- ===== 内联数据 ===== -->
+  <script src="js/inline-data.js"></script>
+
+  <script>
+  (() => {
+    'use strict';
+
+    // ===== 颜色映射 =====
+    const COLORS = {
+      meta_axiom: '#ff4455',
+      meta_theorem: '#ff8822',
+      axiom: '#3388ff',
+      theorem: '#33dd88',
+      corollary: '#1abc9c',
+      concept: '#aa66ff',
+      equation: '#ffaa22',
+      model: '#22ddaa',
+      case: '#778899',
+      anchor: '#ff5599',
+      method: '#cc77ff'
+    };
+
+    const TYPE_LABELS = {
+      meta_axiom: '元公理', meta_theorem: '元定理', axiom: '公理',
+      theorem: '定理', corollary: '推论', concept: '概念',
+      equation: '方程', model: '模型', case: '实例',
+      anchor: '跨学科锚点', method: '方法论'
+    };
+
+    const THEORY_COLORS = {
+      system_ontology: '#ff4455',
+      noo_ecology: '#aa66ff',
+      civilization_dynamics: '#33dd88'
+    };
+
+    // ===== 合并数据 =====
+    const allNodes = [];
+    const allLinks = [];
+    const nodeMap = {};
+    const theories = {};
+
+    for (const data of INLINE_DATA) {
+      theories[data.theory.id] = data.theory;
+      for (const n of data.nodes) {
+        if (!nodeMap[n.id]) {
+          nodeMap[n.id] = {
+            id: n.id,
+            name: n.label,
+            type: n.type,
+            theory: n.theory,
+            description: n.description,
+            detail: n.detail || '',
+            tags: n.tags || [],
+            val: 1
+          };
+          allNodes.push(nodeMap[n.id]);
+        }
+      }
+      for (const r of (data.relationships || [])) {
+        allLinks.push({
+          source: r.source,
+          target: r.target,
+          type: r.type,
+          label: r.label || ''
+        });
+      }
+    }
+
+    // 按类型调整节点大小
+    const TYPE_SIZE = {
+      meta_axiom: 2.2, meta_theorem: 2.0, axiom: 1.8,
+      theorem: 1.4, corollary: 1.3, concept: 1.5,
+      equation: 1.2, model: 1.6, case: 1.0,
+      anchor: 1.3, method: 1.4
+    };
+    allNodes.forEach(n => {
+      n.val = TYPE_SIZE[n.type] || 1.2;
+    });
+
+    // ===== 获取颜色 =====
+    function getColor(d) {
+      return COLORS[d.type] || '#888';
+    }
+
+    // ===== 初始化 3D 图谱 =====
+    const container = document.getElementById('graph-container');
+    const hintBar = document.getElementById('hint-bar');
+    const detailPanel = document.getElementById('detail-panel');
+
+    const Graph = ForceGraph3D()(container)
+      .graphData({ nodes: allNodes, links: allLinks })
+      .backgroundColor('#080818')
+      .nodeLabel(d => `${d.name}\n${d.description ? d.description.slice(0, 80) + (d.description.length > 80 ? '…' : '') : ''}`)
+      .nodeAutoColorBy(d => COLORS[d.type])
+      .nodeColor(d => {
+        // 手动颜色：发光色
+        return COLORS[d.type] || '#888';
+      })
+      .nodeRelSize(1.8)
+      .nodeVal(d => d.val)
+      .nodeOpacity(0.85)
+      .nodeResolution(16)
+      // 链接粒子特效
+      .linkColor(() => 'rgba(100, 130, 200, 0.25)')
+      .linkWidth(0.8)
+      .linkOpacity(0.3)
+      .linkDirectionalParticles(d => d.label ? 1 : 0)
+      .linkDirectionalParticleSpeed(0.008)
+      .linkDirectionalParticleWidth(3)
+      .linkDirectionalParticleColor(() => '#88bbff')
+      .linkLabel(d => d.label || '')
+      // 自动旋转
+      .autoRotate(true)
+      .autoRotateSpeed(0.8)
+      // 交互
+      .onNodeClick((node, event) => {
+        // 高亮该节点及其连接
+        const linkedIds = new Set([node.id]);
+        allLinks.forEach(l => {
+          const s = typeof l.source === 'object' ? l.source.id : l.source;
+          const t = typeof l.target === 'object' ? l.target.id : l.target;
+          if (s === node.id) linkedIds.add(t);
+          if (t === node.id) linkedIds.add(s);
+        });
+        Graph.nodeColor(d => linkedIds.has(d.id) ? COLORS[d.type] || '#888' : 'rgba(50,50,80,0.15)');
+        Graph.linkColor(l => {
+          const s = typeof l.source === 'object' ? l.source.id : l.source;
+          const t = typeof l.target === 'object' ? l.target.id : l.target;
+          return linkedIds.has(s) && linkedIds.has(t) ? 'rgba(200,220,255,0.4)' : 'rgba(50,50,80,0.05)';
+        });
+        Graph.linkWidth(l => {
+          const s = typeof l.source === 'object' ? l.source.id : l.source;
+          const t = typeof l.target === 'object' ? l.target.id : l.target;
+          return linkedIds.has(s) && linkedIds.has(t) ? 1.2 : 0.3;
+        });
+        // 悬停时自动停止旋转
+        Graph.autoRotate(false);
+
+        // 详情面板
+        const color = COLORS[node.type] || '#888';
+        detailPanel.innerHTML = `
+          <div class="detail-header" style="border-left:4px solid ${color};">
+            <span class="detail-type" style="background:${color};">${TYPE_LABELS[node.type] || node.type}</span>
+            <span class="detail-theory">${(theories[node.theory] || {}).label || node.theory}</span>
+          </div>
+          <h2 class="detail-title">${node.name}</h2>
+          <div class="detail-desc">${node.description || ''}</div>
+          ${node.detail ? `<div class="detail-body"><h3>详细阐述</h3><p>${node.detail.replace(/\n/g, '<br>')}</p></div>` : ''}
+          ${node.tags && node.tags.length ? `<div class="detail-tags">${node.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+        `;
+        detailPanel.classList.add('open');
+      })
+      .onNodeHover(node => {
+        // 鼠标悬停时停止自动旋转
+        Graph.autoRotate(!node);
+        // 悬停时发光效果（通过高亮）
+        if (!node && !document.querySelector('.detail-panel.open')) {
+          Graph.nodeColor(d => COLORS[d.type] || '#888');
+          Graph.linkColor(() => 'rgba(100, 130, 200, 0.25)');
+          Graph.linkWidth(0.8);
+        }
+      })
+      .onBackgroundClick(() => {
+        // 点击空白恢复
+        Graph.nodeColor(d => COLORS[d.type] || '#888');
+        Graph.linkColor(() => 'rgba(100, 130, 200, 0.25)');
+        Graph.linkWidth(0.8);
+        Graph.autoRotate(true);
+        detailPanel.classList.remove('open');
+      });
+
+    hintBar.textContent = '◈ 拖拽旋转 · 滚轮缩放 · 点击节点查看详情 · 悬停暂停旋转';
+
+    // ===== 搜索 =====
+    document.getElementById('search-input').addEventListener('input', function() {
+      const q = this.value.toLowerCase().trim();
+      if (!q) {
+        Graph.nodeColor(d => COLORS[d.type] || '#888');
+        Graph.linkColor(() => 'rgba(100, 130, 200, 0.25)');
+        Graph.linkWidth(0.8);
+        Graph.nodeLabel(d => d.name + '\n' + (d.description || '').slice(0, 80));
+        return;
+      }
+      Graph.nodeColor(d => {
+        const match = d.name.toLowerCase().includes(q) ||
+          (d.description || '').toLowerCase().includes(q) ||
+          (d.tags || []).some(t => t.toLowerCase().includes(q));
+        return match ? (COLORS[d.type] || '#888') : 'rgba(30,30,50,0.08)';
+      });
+      Graph.linkColor(() => 'rgba(100, 130, 200, 0.12)');
+    });
+
+    // ===== 理论筛选 =====
+    const filterContainer = document.getElementById('theory-filters');
+    Object.values(theories).forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn active';
+      btn.innerHTML = `<span class="filter-dot" style="background:${THEORY_COLORS[t.id] || '#888'};"></span>${t.label}`;
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        const active = btn.classList.contains('active');
+        Graph.nodeColor(d => {
+          if (d.theory === t.id) return active ? (COLORS[d.type] || '#888') : 'rgba(30,30,50,0.08)';
+          // 检查其他启用的筛选
+          const others = document.querySelectorAll('.filter-btn.active:not([data-theory="' + t.id + '"])');
+          if (others.length > 0) {
+            return 'rgba(30,30,50,0.08)'; // 只有匹配的才显示
+          }
+          return COLORS[d.type] || '#888';
+        });
+      });
+      btn.dataset.theory = t.id;
+      filterContainer.appendChild(btn);
+    });
+
+    // ===== 重置 =====
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      document.getElementById('search-input').value = '';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
+      Graph.nodeColor(d => COLORS[d.type] || '#888');
+      Graph.linkColor(() => 'rgba(100, 130, 200, 0.25)');
+      Graph.linkWidth(0.8);
+      Graph.autoRotate(true);
+      detailPanel.classList.remove('open');
+      // 恢复中心视角
+      Graph.cameraPosition({ x: 0, y: 0, z: 300 });
+    });
+
+    console.log('✅ 3D 知识图谱已启动，节点：' + allNodes.length + '，边：' + allLinks.length);
+  })();
+  </script>
+
+</body>
+</html>

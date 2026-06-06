@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智质生态学 · 知识图谱</title>
+  <meta name="description" content="系统本体论 · 智质生态学 · 文明动力学 — 互动知识图谱">
+  <link rel="stylesheet" href="css/style-3d.css">
+</head>
+<body>
+
+  <nav class="toolbar">
+    <div class="toolbar-brand">
+      <span class="brand-icon">◈</span>
+      <span>知识图谱</span>
+      <span class="brand-sub">智质生态学 · 系统本体论 · 文明动力学</span>
+    </div>
+    <div class="toolbar-search">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="search-input" placeholder="搜索概念…" autocomplete="off">
+    </div>
+    <div class="toolbar-filters" id="theory-filters"></div>
+    <button class="toolbar-reset" id="reset-btn">⟲</button>
+  </nav>
+
+  <div id="graph-container"></div>
+
+  <aside class="detail-panel" id="detail-panel"></aside>
+
+  <div class="legend">
+    <div class="legend-title">节点类型</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff4455;"></span>元公理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff8822;"></span>元定理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#3388ff;"></span>公理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#33dd88;"></span>定理/推论</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#aa66ff;"></span>概念</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ffaa22;"></span>方程</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#22ddaa;"></span>模型</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#778899;"></span>实例</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff5599;"></span>跨学科锚点</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#cc77ff;"></span>方法论</div>
+  </div>
+
+  <div class="hint-bar" id="hint-bar">🚀 加载中…</div>
+
+  <script src="js/inline-data.js"></script>
+  <script src="js/force-graph.min.js"></script>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const COLORS = {
+      meta_axiom: '#ff4455', meta_theorem: '#ff8822', axiom: '#3388ff',
+      theorem: '#33dd88', corollary: '#1abc9c', concept: '#aa66ff',
+      equation: '#ffaa22', model: '#22ddaa', case: '#778899',
+      anchor: '#ff5599', method: '#cc77ff'
+    };
+
+    const TYPE_LABELS = {
+      meta_axiom: '元公理', meta_theorem: '元定理', axiom: '公理',
+      theorem: '定理', corollary: '推论', concept: '概念',
+      equation: '方程', model: '模型', case: '实例',
+      anchor: '跨学科锚点', method: '方法论'
+    };
+
+    const THEORY_COLORS = {
+      system_ontology: '#ff4455', noo_ecology: '#aa66ff', civilization_dynamics: '#33dd88'
+    };
+
+    // 合并数据
+    const allNodes = [];
+    const allLinks = [];
+    const nodeMap = {};
+    const theories = {};
+
+    for (const data of INLINE_DATA) {
+      theories[data.theory.id] = data.theory;
+      for (const n of data.nodes) {
+        if (!nodeMap[n.id]) {
+          nodeMap[n.id] = {
+            id: n.id, name: n.label, type: n.type, theory: n.theory,
+            description: n.description, detail: n.detail || '', tags: n.tags || [],
+            val: 1
+          };
+          allNodes.push(nodeMap[n.id]);
+        }
+      }
+      for (const r of (data.relationships || [])) {
+        allLinks.push({ source: r.source, target: r.target, type: r.type, label: r.label || '' });
+      }
+    }
+
+    const TYPE_SIZE = {
+      meta_axiom: 2.2, meta_theorem: 2.0, axiom: 1.8,
+      theorem: 1.4, corollary: 1.3, concept: 1.5,
+      equation: 1.2, model: 1.6, case: 1.0, anchor: 1.3, method: 1.4
+    };
+    allNodes.forEach(n => { n.val = TYPE_SIZE[n.type] || 1.2; });
+
+    const container = document.getElementById('graph-container');
+    const hintBar = document.getElementById('hint-bar');
+    const detailPanel = document.getElementById('detail-panel');
+
+    let currentHighlight = null;
+
+    const Graph = ForceGraph()(container)
+      .graphData({ nodes: allNodes, links: allLinks })
+      .backgroundColor('#080818')
+      .nodeLabel(d => d.name)
+      .nodeColor(d => COLORS[d.type] || '#888')
+      .nodeRelSize(2)
+      .nodeVal(d => d.val)
+      .nodeOpacity(0.9)
+      .nodeCanvasObject((node, ctx, globalScale) => {
+        const label = node.name;
+        const fontSize = 10 / globalScale;
+        ctx.font = `${fontSize}px sans-serif`;
+        const textWidth = ctx.measureText(label).width;
+        const bkgWidth = textWidth + 8;
+        const bkgHeight = fontSize + 4;
+
+        // 背景标签
+        ctx.fillStyle = 'rgba(8,8,24,0.75)';
+        ctx.roundRect(node.x - bkgWidth / 2, node.y - 12 - bkgHeight, bkgWidth, bkgHeight, 3);
+        ctx.fill();
+        ctx.fillStyle = '#c0c0d0';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(label, node.x, node.y - 14);
+
+        // 节点光晕（仅高亮时）
+        if (currentHighlight === node.id) {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.val * 6 + 4, 0, 2 * Math.PI, false);
+          ctx.fillStyle = COLORS[node.type] || '#888';
+          ctx.globalAlpha = 0.2;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+      })
+      // 粒子效果
+      .linkColor(() => 'rgba(100, 130, 200, 0.2)')
+      .linkWidth(0.5)
+      .linkOpacity(0.2)
+      .linkDirectionalParticles(d => d.label ? 2 : 1)
+      .linkDirectionalParticleSpeed(0.006)
+      .linkDirectionalParticleWidth(2.5)
+      .linkDirectionalParticleColor(() => '#88ccff')
+      .linkLabel(d => d.label || '')
+      .linkHoverPrecision(3)
+      // 交互
+      .onNodeClick((node, event) => {
+        currentHighlight = node.id;
+        const linkedIds = new Set([node.id]);
+        allLinks.forEach(l => {
+          const s = typeof l.source === 'object' ? l.source.id : l.source;
+          const t = typeof l.target === 'object' ? l.target.id : l.target;
+          if (s === node.id) linkedIds.add(t);
+          if (t === node.id) linkedIds.add(s);
+        });
+        Graph.nodeColor(d => linkedIds.has(d.id) ? (COLORS[d.type] || '#888') : 'rgba(40,40,70,0.12)');
+        Graph.linkColor(l => {
+          const s = typeof l.source === 'object' ? l.source.id : l.source;
+          const t = typeof l.target === 'object' ? l.target.id : l.target;
+          return linkedIds.has(s) && linkedIds.has(t) ? 'rgba(200,220,255,0.5)' : 'rgba(40,40,70,0.05)';
+        });
+        Graph.linkWidth(l => {
+          const s = typeof l.source === 'object' ? l.source.id : l.source;
+          const t = typeof l.target === 'object' ? l.target.id : l.target;
+          return linkedIds.has(s) && linkedIds.has(t) ? 1.5 : 0.2;
+        });
+        Graph.linkDirectionalParticles(l => {
+          const s = typeof l.source === 'object' ? l.source.id : l.source;
+          const t = typeof l.target === 'object' ? l.target.id : l.target;
+          return linkedIds.has(s) && linkedIds.has(t) ? 3 : 0;
+        });
+        Graph.linkDirectionalParticleSpeed(0.01);
+
+        const color = COLORS[node.type] || '#888';
+        detailPanel.innerHTML = `
+          <div class="detail-header" style="border-left:4px solid ${color};">
+            <span class="detail-type" style="background:${color};">${TYPE_LABELS[node.type] || node.type}</span>
+            <span class="detail-theory">${(theories[node.theory] || {}).label || node.theory}</span>
+          </div>
+          <h2 class="detail-title">${node.name}</h2>
+          <div class="detail-desc">${node.description || ''}</div>
+          ${node.detail ? `<div class="detail-body"><h3>详细阐述</h3><p>${node.detail.replace(/\n/g, '<br>')}</p></div>` : ''}
+          ${node.tags && node.tags.length ? `<div class="detail-tags">${node.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+        `;
+        detailPanel.classList.add('open');
+      })
+      .onNodeHover(node => {
+        if (!node) {
+          currentHighlight = null;
+          if (!detailPanel.classList.contains('open')) {
+            Graph.nodeColor(d => COLORS[d.type] || '#888');
+            Graph.linkColor(() => 'rgba(100, 130, 200, 0.2)');
+            Graph.linkWidth(0.5);
+            Graph.linkDirectionalParticles(d => d.label ? 2 : 1);
+            Graph.linkDirectionalParticleSpeed(0.006);
+          }
+        }
+      })
+      .onBackgroundClick(() => {
+        currentHighlight = null;
+        Graph.nodeColor(d => COLORS[d.type] || '#888');
+        Graph.linkColor(() => 'rgba(100, 130, 200, 0.2)');
+        Graph.linkWidth(0.5);
+        Graph.linkDirectionalParticles(d => d.label ? 2 : 1);
+        Graph.linkDirectionalParticleSpeed(0.006);
+        detailPanel.classList.remove('open');
+      })
+      .enableNodeDrag(true)
+      .enableNavigationControls(true)
+      .enablePointerInteraction(true);
+
+    hintBar.textContent = '🖱 拖拽节点 · 滚轮缩放 · 点击查看详情 · 粒子流线表示概念关联';
+
+    // 搜索
+    document.getElementById('search-input').addEventListener('input', function() {
+      const q = this.value.toLowerCase().trim();
+      if (!q) {
+        Graph.nodeColor(d => COLORS[d.type] || '#888');
+        Graph.linkColor(() => 'rgba(100, 130, 200, 0.2)');
+        return;
+      }
+      Graph.nodeColor(d => {
+        const match = d.name.toLowerCase().includes(q) ||
+          (d.description || '').toLowerCase().includes(q) ||
+          (d.tags || []).some(t => t.toLowerCase().includes(q));
+        return match ? (COLORS[d.type] || '#888') : 'rgba(30,30,50,0.06)';
+      });
+      Graph.linkColor(() => 'rgba(100, 130, 200, 0.08)');
+    });
+
+    // 筛选
+    const filterContainer = document.getElementById('theory-filters');
+    Object.values(theories).forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn active';
+      btn.innerHTML = `<span class="filter-dot" style="background:${THEORY_COLORS[t.id] || '#888'};"></span>${t.label}`;
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        const activeTheories = [...document.querySelectorAll('.filter-btn.active')].map(b => b.dataset.theory);
+        Graph.nodeColor(d => {
+          if (activeTheories.length === 0) return COLORS[d.type] || '#888';
+          return activeTheories.includes(d.theory) ? (COLORS[d.type] || '#888') : 'rgba(30,30,50,0.06)';
+        });
+      });
+      btn.dataset.theory = t.id;
+      filterContainer.appendChild(btn);
+    });
+
+    // 重置
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      document.getElementById('search-input').value = '';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
+      Graph.nodeColor(d => COLORS[d.type] || '#888');
+      Graph.linkColor(() => 'rgba(100, 130, 200, 0.2)');
+      Graph.linkWidth(0.5);
+      Graph.linkDirectionalParticles(d => d.label ? 2 : 1);
+      Graph.linkDirectionalParticleSpeed(0.006);
+      detailPanel.classList.remove('open');
+      Graph.zoomToFit(400, 50);
+    });
+
+    // 键盘
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('reset-btn').click();
+      }
+      if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        document.getElementById('search-input').focus();
+      }
+    });
+
+    console.log('✅ 2D Canvas 图谱已启动，节点：' + allNodes.length + '，边：' + allLinks.length);
+  })();
+  </script>
+
+</body>
+</html>

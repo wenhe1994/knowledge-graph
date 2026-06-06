@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "description": "互动知识图谱数据标准 - 智质生态学理论体系",
+
+  "node_types": {
+    "meta_axiom": {
+      "label": "元公理",
+      "color": "#E74C3C",
+      "shape": "hexagon",
+      "description": "体系的第一性原理，不可再还原的预设"
+    },
+    "meta_theorem": {
+      "label": "元定理",
+      "color": "#E67E22",
+      "shape": "hexagon",
+      "description": "元公理耦合运作产生的全局动力学模式"
+    },
+    "axiom": {
+      "label": "公理",
+      "color": "#3498DB",
+      "shape": "diamond",
+      "description": "具体系统的构成性法则"
+    },
+    "theorem": {
+      "label": "定理",
+      "color": "#2ECC71",
+      "shape": "circle",
+      "description": "从公理演绎出的推论"
+    },
+    "corollary": {
+      "label": "推论",
+      "color": "#1ABC9C",
+      "shape": "circle",
+      "description": "定理的延伸推论"
+    },
+    "concept": {
+      "label": "概念",
+      "color": "#9B59B6",
+      "shape": "square",
+      "description": "理论体系中的核心概念"
+    },
+    "equation": {
+      "label": "方程",
+      "color": "#F39C12",
+      "shape": "triangle",
+      "description": "形式化数学表达"
+    },
+    "model": {
+      "label": "模型",
+      "color": "#16A085",
+      "shape": "star",
+      "description": "理论构建的认知模型"
+    },
+    "case": {
+      "label": "实例",
+      "color": "#7F8C8D",
+      "shape": "square",
+      "description": "理论的应用案例或历史实例"
+    },
+    "anchor": {
+      "label": "跨学科锚点",
+      "color": "#EC407A",
+      "shape": "hexagon",
+      "description": "与现有学科对话的桥梁"
+    },
+    "method": {
+      "label": "方法论",
+      "color": "#AB47BC",
+      "shape": "diamond",
+      "description": "发现与验证理论的方法"
+    }
+  },
+
+  "relationship_types": {
+    "depends_on": {
+      "label": "依赖",
+      "color": "#95A5A6",
+      "style": "solid",
+      "description": "A 的存在或有效性依赖于 B"
+    },
+    "derived_from": {
+      "label": "推导自",
+      "color": "#27AE60",
+      "style": "solid",
+      "description": "A 是 B 的逻辑演绎产物"
+    },
+    "instantiates": {
+      "label": "实例化",
+      "color": "#8E44AD",
+      "style": "dashed",
+      "description": "A 是 B 在具体语境中的实例"
+    },
+    "anchors_to": {
+      "label": "锚定",
+      "color": "#E91E63",
+      "style": "dotted",
+      "description": "A 与现有学科知识锚定对话"
+    },
+    "extends_to": {
+      "label": "延伸",
+      "color": "#00BCD4",
+      "style": "dashed",
+      "description": "A 将理论延伸至新的领域"
+    },
+    "belongs_to": {
+      "label": "属于",
+      "color": "#78909C",
+      "style": "dotted",
+      "description": "A 是 B 理论体系的组成部分"
+    },
+    "contradicts": {
+      "label": "对话/对位",
+      "color": "#FF5722",
+      "style": "solid",
+      "description": "A 与 B 构成学术对话或对位关系"
+    },
+    "supports": {
+      "label": "支撑",
+      "color": "#4CAF50",
+      "style": "solid",
+      "description": "A 为 B 提供实例证据或支持"
+    }
+  },
+
+  "node_fields": {
+    "id": { "type": "string", "required": true, "description": "唯一标识符" },
+    "label": { "type": "string", "required": true, "description": "显示名称" },
+    "type": { "type": "string", "required": true, "enum": "node_types key", "description": "节点类型" },
+    "theory": { "type": "string", "required": true, "description": "所属理论体系" },
+    "description": { "type": "string", "required": true, "description": "核心定义（显示在主面板）" },
+    "detail": { "type": "string", "required": false, "description": "详细阐述（点击后展开）" },
+    "tags": { "type": "array", "required": false, "description": "标签" },
+    "refs": { "type": "array", "required": false, "description": "参考文献或文件路径" },
+    "position": { "type": "object", "required": false, "description": "图谱中的固定位置（可选）" }
+  },
+
+  "relationship_fields": {
+    "source": { "type": "string", "required": true, "description": "起点节点 id" },
+    "target": { "type": "string", "required": true, "description": "终点节点 id" },
+    "type": { "type": "string", "required": true, "enum": "relationship_types key", "description": "关系类型" },
+    "label": { "type": "string", "required": false, "description": "关系标签文字" }
+  }
+}

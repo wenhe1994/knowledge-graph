@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识图谱 · 调试版</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #debug-console {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      color: #0f0;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      max-width: 80%;
+      z-index: 300;
+      display: none;
+      border: 1px solid #0f0;
+    }
+    .error-msg {
+      color: #f44;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="toolbar" id="toolbar">
+    <div class="toolbar-brand">
+      <span class="brand-icon">◆</span>
+      <span>知识图谱</span>
+      <span class="brand-sub">调试版 — 内联数据</span>
+    </div>
+    <div class="toolbar-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="搜索…" autocomplete="off">
+    </div>
+    <div class="toolbar-filters" id="theory-filters"></div>
+    <button class="toolbar-reset" id="reset-btn">⟲ 重置</button>
+  </nav>
+
+  <div id="graph-container"></div>
+  <aside class="detail-panel" id="detail-panel"></aside>
+  <div id="debug-console"></div>
+
+  <div class="legend" id="legend">
+    <div class="legend-title">节点类型</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#E74C3C;"></span>元公理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#E67E22;"></span>元定理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#3498DB;"></span>公理</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#2ECC71;"></span>定理/推论</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#9B59B6;"></span>概念</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#F39C12;"></span>方程</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#16A085;"></span>模型</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#7F8C8D;"></span>实例</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#EC407A;"></span>跨学科锚点</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#AB47BC;"></span>方法论</div>
+  </div>
+
+  <div class="hint-bar" id="hint-bar">加载中…</div>
+
+  <!-- 先引入内联数据（避免 fetch 问题） -->
+  <script src="js/inline-data.js"></script>
+  
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <script>
+  // ===== 简单的 debug log =====
+  const debugEl = document.getElementById('debug-console');
+  const hintEl = document.getElementById('hint-bar');
+  function debug(msg, isError) {
+    console.log(msg);
+    debugEl.style.display = 'block';
+    debugEl.innerHTML += '<div' + (isError ? ' class="error-msg"' : '') + '>' + msg.replace(/</g, '&lt;') + '</div>';
+    debugEl.scrollTop = debugEl.scrollHeight;
+  }
+  function setHint(msg) { hintEl.textContent = msg; }
+
+  // ===== 加载 schema =====
+  let schema = null;
+  fetch('data/schema.json')
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(d => { schema = d; debug('✅ Schema 已加载: ' + Object.keys(d.node_types).length + ' 种节点类型'); })
+    .catch(e => { debug('❌ Schema 加载失败: ' + e.message, true); });
+  
+  // ===== 开始 =====
+  try {
+    debug('🚀 开始初始化…');
+    
+    if (typeof INLINE_DATA === 'undefined') {
+      throw new Error('INLINE_DATA 未定义 — 内联数据文件加载失败');
+    }
+    debug('✅ 内联数据已加载: ' + INLINE_DATA.length + ' 个理论体系');
+
+    if (typeof d3 === 'undefined') {
+      throw new Error('D3 未定义 — CDN 加载失败');
+    }
+    debug('✅ D3.js 版本: ' + d3.version);
+
+    const container = document.getElementById('graph-container');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    debug('📐 容器尺寸: ' + width + ' x ' + height);
+
+    if (width === 0 || height === 0) {
+      debug('⚠️ 容器尺寸为 0！CSS 可能未正确加载', true);
+    }
+
+    // ===== 合并数据 =====
+    const theories = {};
+    const nodes = [];
+    const edges = [];
+    const seenNodes = new Set();
+    const seenEdges = new Set();
+
+    for (const data of INLINE_DATA) {
+      theories[data.theory.id] = data.theory;
+      for (const node of data.nodes) {
+        if (!seenNodes.has(node.id)) {
+          seenNodes.add(node.id);
+          nodes.push(node);
+        }
+      }
+      for (const rel of (data.relationships || [])) {
+        const key = rel.source + '->' + rel.target + ':' + rel.type;
+        if (!seenEdges.has(key)) {
+          seenEdges.add(key);
+          edges.push(rel);
+        }
+      }
+    }
+    debug('📊 节点: ' + nodes.length + ', 边: ' + edges.length);
+
+    // ===== 创建 SVG =====
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', width);
+    svg.setAttribute('height', height);
+    svg.style.background = '#1a1a2e';
+    container.appendChild(svg);
+    debug('✅ SVG 已创建');
+
+    // 缩放
+    const zoomBehavior = d3.zoom()
+      .scaleExtent([0.1, 4])
+      .on('zoom', (event) => {
+        d3.select(svg).selectAll('g.graph-group').attr('transform', event.transform);
+      });
+    d3.select(svg).call(zoomBehavior);
+
+    // 图组
+    const graphGroup = d3.select(svg).append('g').attr('class', 'graph-group');
+
+    // ===== 构建 D3 数据 =====
+    const d3Nodes = nodes.map(n => ({
+      id: n.id, label: n.label, type: n.type, theory: n.theory,
+      description: n.description, detail: n.detail || '', tags: n.tags || [],
+      x: width / 2 + (Math.random() - 0.5) * 100,
+      y: height / 2 + (Math.random() - 0.5) * 100
+    }));
+
+    const d3Edges = edges.map(e => ({
+      source: e.source, target: e.target, type: e.type, label: e.label || ''
+    }));
+
+    // ===== 颜色/形状映射 =====
+    function getColor(type) {
+      const m = { meta_axiom:'#E74C3C', meta_theorem:'#E67E22', axiom:'#3498DB', theorem:'#2ECC71', corollary:'#1ABC9C', concept:'#9B59B6', equation:'#F39C12', model:'#16A085', case:'#7F8C8D', anchor:'#EC407A', method:'#AB47BC' };
+      return m[type] || '#999';
+    }
+
+    // ===== 力模拟 =====
+    const simulation = d3.forceSimulation(d3Nodes)
+      .force('link', d3.forceLink(d3Edges).id(d => d.id).distance(120))
+      .force('charge', d3.forceManyBody().strength(-300))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide(50))
+      .alphaDecay(0.02);
+
+    // ===== 绘制边 (用 line) =====
+    const linkGroup = graphGroup.append('g').attr('class', 'links');
+    const link = linkGroup.selectAll('line')
+      .data(d3Edges)
+      .enter().append('line')
+      .attr('stroke', '#555')
+      .attr('stroke-width', 1)
+      .attr('opacity', 0.4);
+
+    debug('✅ 边已绘制: ' + d3Edges.length);
+
+    // ===== 绘制节点 =====
+    const nodeGroup = graphGroup.append('g').attr('class', 'nodes');
+    const node = nodeGroup.selectAll('g')
+      .data(d3Nodes)
+      .enter().append('g')
+      .attr('cursor', 'pointer')
+      .call(d3.drag()
+        .on('start', (event, d) => {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x; d.fy = d.y;
+        })
+        .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+        .on('end', (event, d) => {
+          if (!event.active) simulation.alphaTarget(0);
+          d.fx = null; d.fy = null;
+        })
+      );
+
+    // 节点形状
+    node.each(function(d) {
+      const el = d3.select(this);
+      const color = getColor(d.type);
+      const r = 22;
+      
+      if (d.type === 'meta_axiom' || d.type === 'meta_theorem' || d.type === 'anchor') {
+        // 六边形
+        const pts = [];
+        for (let i = 0; i < 6; i++) {
+          const a = Math.PI / 3 * i - Math.PI / 6;
+          pts.push(r * Math.cos(a) + ',' + r * Math.sin(a));
+        }
+        el.append('polygon').attr('points', pts.join(' ')).attr('fill', color).attr('stroke', '#fff').attr('stroke-width', 2);
+      } else if (d.type === 'axiom' || d.type === 'method') {
+        // 菱形
+        el.append('polygon').attr('points', '0,'+(-r)+' '+r+',0 0,'+r+' '+(-r)+',0').attr('fill', color).attr('stroke', '#fff').attr('stroke-width', 2);
+      } else if (d.type === 'equation') {
+        // 三角形
+        el.append('polygon').attr('points', '0,'+(-r)+' '+(-r*0.87)+','+(r*0.5)+' '+(r*0.87)+','+(r*0.5)).attr('fill', color).attr('stroke', '#fff').attr('stroke-width', 2);
+      } else if (d.type === 'model') {
+        // 星形
+        const pts2 = [];
+        for (let i = 0; i < 10; i++) {
+          const r2 = i % 2 === 0 ? r : r * 0.45;
+          const a = Math.PI / 5 * i - Math.PI / 2;
+          pts2.push(r2 * Math.cos(a) + ',' + r2 * Math.sin(a));
+        }
+        el.append('polygon').attr('points', pts2.join(' ')).attr('fill', color).attr('stroke', '#fff').attr('stroke-width', 2);
+      } else if (d.type === 'case' || d.type === 'concept') {
+        // 方形
+        el.append('rect').attr('x', -r*0.75).attr('y', -r*0.75).attr('width', r*1.5).attr('height', r*1.5).attr('rx', 4).attr('fill', color).attr('stroke', '#fff').attr('stroke-width', 2);
+      } else {
+        // 圆形
+        el.append('circle').attr('r', r).attr('fill', color).attr('stroke', '#fff').attr('stroke-width', 2);
+      }
+    });
+
+    debug('✅ 节点形绘已绘制: ' + d3Nodes.length);
+
+    // ===== 标签 =====
+    const labelGroup = graphGroup.append('g').attr('class', 'labels');
+    const label = labelGroup.selectAll('text')
+      .data(d3Nodes)
+      .enter().append('text')
+      .attr('text-anchor', 'middle')
+      .attr('dy', 36)
+      .attr('font-size', 10)
+      .attr('fill', '#aaa')
+      .attr('pointer-events', 'none')
+      .text(d => d.label.length > 16 ? d.label.slice(0, 14) + '…' : d.label);
+
+    // ===== Tick =====
+    simulation.on('tick', () => {
+      link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      node.attr('transform', d => 'translate(' + d.x + ',' + d.y + ')');
+      label.attr('x', d => d.x).attr('y', d => d.y + 36);
+    });
+
+    // force 布局稳定后再更新 hint
+    setTimeout(() => {
+      setHint('🖱 拖拽移动 · 滚轮缩放 · 点击查看详情');
+      debug('✅ 力模拟已稳定');
+    }, 3000);
+
+    // ===== 点击显示详情 =====
+    const detailPanel = document.getElementById('detail-panel');
+    node.on('click', (event, d) => {
+      event.stopPropagation();
+      const color = getColor(d.type);
+      const typeLabels = { meta_axiom:'元公理', meta_theorem:'元定理', axiom:'公理', theorem:'定理', corollary:'推论', concept:'概念', equation:'方程', model:'模型', case:'实例', anchor:'跨学科锚点', method:'方法论' };
+      detailPanel.innerHTML = 
+        '<div class="detail-header" style="border-left:4px solid ' + color + ';">' +
+        '<span class="detail-type" style="background:' + color + ';">' + (typeLabels[d.type] || d.type) + '</span>' +
+        '</div>' +
+        '<h2 class="detail-title">' + d.label + '</h2>' +
+        '<div class="detail-desc">' + d.description + '</div>' +
+        (d.detail ? '<div class="detail-body"><h3>详细阐述</h3><p>' + d.detail.replace(/\n/g, '<br>') + '</p></div>' : '') +
+        (d.tags && d.tags.length ? '<div class="detail-tags">' + d.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>' : '');
+      detailPanel.classList.add('open');
+    });
+
+    svg.addEventListener('click', () => {
+      detailPanel.classList.remove('open');
+    });
+
+    // ===== 搜索 =====
+    document.getElementById('search-input').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      d3Nodes.forEach(d => {
+        const match = !q || d.label.toLowerCase().includes(q) || d.description.toLowerCase().includes(q) || d.tags.some(t => t.toLowerCase().includes(q));
+        node.filter(n => n.id === d.id).attr('opacity', match ? 1 : 0.1);
+        label.filter(n => n.id === d.id).attr('opacity', match ? 1 : 0.1);
+      });
+    });
+
+    // ===== 理论筛选 =====
+    const theoryList = Object.values(theories);
+    const theoryColors = { system_ontology:'#E74C3C', noo_ecology:'#9B59B6', civilization_dynamics:'#2ECC71' };
+    theoryList.forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn active';
+      btn.innerHTML = '<span class="filter-dot" style="background:' + (theoryColors[t.id] || '#999') + ';"></span>' + t.label;
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        const active = btn.classList.contains('active');
+        node.filter(n => n.theory === t.id).attr('opacity', active ? 1 : 0.05);
+        label.filter(n => n.theory === t.id).attr('opacity', active ? 1 : 0.05);
+      });
+      document.getElementById('theory-filters').appendChild(btn);
+    });
+
+    // 重置
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      document.getElementById('search-input').value = '';
+      node.attr('opacity', 1);
+      label.attr('opacity', 1);
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
+      detailPanel.classList.remove('open');
+      d3.select(svg).transition().duration(500).call(zoomBehavior.transform, d3.zoomIdentity);
+    });
+
+    setHint('✅ 加载完成！可交互图谱已就绪');
+    debug('🎉 图谱初始化完成！');
+
+  } catch (err) {
+    debug('❌ 致命错误: ' + err.message + '\n' + (err.stack || ''), true);
+    setHint('⚠️ 加载失败: ' + err.message);
+  }
+  </script>
+
+</body>
+</html>
